@@ -374,7 +374,7 @@ function NovitaPets() {
               Barattoli porta crocchette in latta decorati e tutto ciò che serve ai tuoi amici a 4 zampe.
             </p>
             <div className="mt-6">
-              <span className="inline-flex items-center gap-2 rounded-full bg-brand-red text-white px-6 py-3 font-semibold group-hover:bg-brand-red-dark transition-colors">
+              <span className="inline-flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-6 py-3 font-semibold group-hover:bg-brand-red-dark transition-colors">
                 Scopri le novità <ArrowRight className="size-4" />
               </span>
             </div>
