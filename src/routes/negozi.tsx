@@ -1,9 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MapPin, Phone, Clock, MessageCircle, ChevronRight, Home, Tag, Sparkles, FlaskConical, Apple, Baby, Headphones } from "lucide-react";
 import { Header, Footer, WhatsAppButton, MobileTabBar } from "./index";
-import ticinoMap from "@/assets/ticino-map.jpg.asset.json";
-import heroLiving from "@/assets/hero-living-room.jpg";
-import storefront from "@/assets/linea-arredamento.jpg";
+import heroNegozi from "@/assets/negozi-hero.jpg";
+import storefront from "@/assets/negozio-storefront.jpg";
 
 export const Route = createFileRoute("/negozi")({
   head: () => ({
