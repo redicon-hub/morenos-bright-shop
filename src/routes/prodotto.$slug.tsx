@@ -166,7 +166,7 @@ function ProductPage() {
 
           {/* Features */}
           <ul className="mt-6 grid grid-cols-2 gap-2">
-            {product.features.map((f) => (
+            {product.features.map((f: string) => (
               <li key={f} className="flex items-center gap-2 text-sm text-foreground/80">
                 <Check className="size-4 text-brand-red shrink-0" /> {f}
               </li>
