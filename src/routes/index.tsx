@@ -250,7 +250,7 @@ function CategoryDrawer({ open, onClose }: { open: boolean; onClose: () => void 
       >
         <div className="bg-brand-yellow h-3" />
         <div className="bg-brand-red text-white px-5 py-5 flex items-center gap-3">
-          <button onClick={onClose} aria-label="Chiudi menu"><Menu className="size-6" /></button>
+          <button onClick={onClose} aria-label="Chiudi menu" className="grid place-items-center size-9 rounded-full bg-white/15 active:bg-white/30"><X className="size-5" /></button>
           <h2 className="text-xl font-semibold">Acquista per categoria</h2>
         </div>
         <nav className="bg-white card-shadow m-3 rounded-md">
