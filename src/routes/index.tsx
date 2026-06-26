@@ -274,22 +274,22 @@ function CategoryDrawer({ open, onClose }: { open: boolean; onClose: () => void 
 
 function Hero() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-6 md:py-10">
-      <div className="grid md:grid-cols-[1fr_1.4fr] gap-6 items-stretch">
-        <div className="bg-white rounded-2xl brand-shadow p-8 md:p-10 flex flex-col justify-center">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+    <section className="mx-auto max-w-7xl px-3 md:px-4 py-4 md:py-10">
+      <div className="grid md:grid-cols-[1fr_1.4fr] gap-3 md:gap-6 items-stretch">
+        <div className="bg-white rounded-2xl brand-shadow p-5 md:p-10 flex flex-col justify-center order-2 md:order-1">
+          <h1 className="text-2xl md:text-5xl font-bold leading-tight">
             Tutto per la tua casa,<br />ogni giorno.
           </h1>
-          <p className="mt-4 text-muted-foreground text-lg">
+          <p className="mt-2 md:mt-4 text-muted-foreground text-sm md:text-lg">
             Idee pratiche, dettagli belli e prezzi che ami.
           </p>
-          <div className="mt-8">
-            <a href="#linee" className="inline-flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-7 py-3.5 font-semibold hover:bg-brand-red-dark transition-colors">
+          <div className="mt-4 md:mt-8">
+            <a href="#linee" className="inline-flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-5 md:px-7 py-3 md:py-3.5 text-sm md:text-base font-semibold hover:bg-brand-red-dark transition-colors">
               SCOPRI DI PIÙ <ArrowRight className="size-4" />
             </a>
           </div>
         </div>
-        <div className="rounded-2xl overflow-hidden brand-shadow bg-muted min-h-[280px] md:min-h-0">
+        <div className="rounded-2xl overflow-hidden brand-shadow bg-muted aspect-[16/10] md:aspect-auto md:min-h-0 order-1 md:order-2">
           <img
             src={heroLiving}
             alt="Salotto accogliente con divano beige e decorazioni"
