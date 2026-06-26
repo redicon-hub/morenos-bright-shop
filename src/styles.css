@@ -91,3 +91,8 @@
 
 @utility brand-shadow { box-shadow: var(--shadow-soft); }
 @utility card-shadow { box-shadow: var(--shadow-card); }
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
