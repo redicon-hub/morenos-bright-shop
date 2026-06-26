@@ -144,7 +144,7 @@ function Header() {
           <div className="flex items-center gap-1 md:gap-2">
             <IconLink icon={Heart} label="Preferiti" />
             <IconLink icon={User} label="Account" />
-            <button className="flex items-center gap-2 rounded-full bg-brand-red text-white px-3 md:px-4 py-2.5 hover:bg-brand-red-dark transition-colors">
+            <button className="flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-3 md:px-4 py-2.5 hover:bg-brand-red-dark transition-colors">
               <ShoppingCart className="size-5" />
               <span className="hidden md:inline text-sm font-semibold">CHF 0.00</span>
               <span className="grid place-items-center size-5 rounded-full bg-brand-yellow text-foreground text-[10px] font-bold">0</span>
