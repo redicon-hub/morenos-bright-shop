@@ -169,7 +169,7 @@ function Header() {
 
           <a
             href="#"
-            className="ml-auto inline-flex items-center gap-2 rounded-full bg-whatsapp text-white px-4 py-2 text-sm font-semibold hover:opacity-90 transition"
+            className="ml-auto inline-flex items-center gap-2 rounded-[10px] bg-whatsapp text-white px-4 py-2 text-sm font-semibold hover:opacity-90 transition"
           >
             <MessageCircle className="size-4" />
             <span className="hidden sm:inline">Chatta con noi</span>
