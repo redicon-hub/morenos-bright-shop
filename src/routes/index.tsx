@@ -503,8 +503,8 @@ function Footer() {
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-white/60">
-          <span>© {new Date().getFullYear()} DA MORENO Sagl — Tutti i diritti riservati.</span>
-          <span>Privacy · Cookie · Termini</span>
+          <span>© {new Date().getFullYear()} DA MORENO SA — Tutti i diritti riservati.</span>
+          <span>Confezionato con cura, prezzato con amore e impacchettato in fiocchi gialli da Red Icon SA</span>
         </div>
       </div>
     </footer>
