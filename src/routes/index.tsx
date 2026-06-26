@@ -107,12 +107,12 @@ function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-white">
-      {/* Top utility bar — BIANCA */}
-      <div className="bg-white border-b border-border text-xs text-foreground/80">
+      {/* Top utility bar — desktop only */}
+      <div className="hidden md:block bg-white border-b border-border text-xs text-foreground/80">
         <div className="mx-auto max-w-7xl px-4 py-2 flex flex-wrap items-center justify-between gap-x-6 gap-y-1">
           <span className="flex items-center gap-1.5"><MapPin className="size-3.5 text-brand-red" /> I nostri 5 punti vendita</span>
-          <span className="hidden md:flex items-center gap-1.5"><Truck className="size-3.5 text-brand-red" /> Spedizioni in Svizzera Fr. 4.90 — gratis da 49.90</span>
-          <span className="hidden md:flex items-center gap-1.5"><Phone className="size-3.5 text-brand-red" /> +41 76 580 75 17</span>
+          <span className="flex items-center gap-1.5"><Truck className="size-3.5 text-brand-red" /> Spedizioni in Svizzera Fr. 4.90 — gratis da 49.90</span>
+          <span className="flex items-center gap-1.5"><Phone className="size-3.5 text-brand-red" /> +41 76 580 75 17</span>
           <div className="flex items-center gap-4 font-medium">
             <a href="#" className="hover:text-brand-red">CONTATTI</a>
             <a href="#" className="hover:text-brand-red">Accedi / Registrati</a>
@@ -121,8 +121,42 @@ function Header() {
         </div>
       </div>
 
-      {/* Main header — GIALLA */}
-      <div className="bg-brand-yellow border-b border-brand-yellow-dark/40">
+      {/* MOBILE HEADER — APP STYLE */}
+      <div className="md:hidden bg-brand-yellow">
+        <div className="px-4 py-2.5 flex items-center gap-3">
+          <button
+            onClick={() => setMenuOpen(true)}
+            className="grid place-items-center size-10 rounded-[10px] bg-white/70 active:bg-white transition-colors"
+            aria-label="Apri menu"
+          >
+            <Menu className="size-5 text-foreground" />
+          </button>
+          <a href="/" className="flex-1 grid place-items-center">
+            <img src={logo} alt="DA MORENO" className="h-10 w-auto" />
+          </a>
+          <button
+            className="relative grid place-items-center size-10 rounded-[10px] bg-brand-red text-white active:bg-brand-red-dark transition-colors"
+            aria-label="Carrello"
+          >
+            <ShoppingCart className="size-5" />
+            <span className="absolute -top-1 -right-1 grid place-items-center size-4 rounded-full bg-white text-brand-red text-[9px] font-bold border border-brand-red">0</span>
+          </button>
+        </div>
+        {/* Mobile search pill */}
+        <div className="px-4 pb-3">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="Cerca prodotti, idee..."
+              className="w-full rounded-full bg-white pl-11 pr-4 py-2.5 text-sm outline-none border border-white focus:border-brand-red transition-colors"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* DESKTOP HEADER — GIALLA */}
+      <div className="hidden md:block bg-brand-yellow border-b border-brand-yellow-dark/40">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center gap-4">
           <a href="/" className="shrink-0">
             <img src={logo} alt="DA MORENO – dove tutto costa meno" className="h-14 md:h-16 w-auto" />
@@ -153,8 +187,8 @@ function Header() {
         </div>
       </div>
 
-      {/* Nav bar with hamburger + Chatta con noi a destra */}
-      <div className="bg-brand-red text-white">
+      {/* DESKTOP NAV BAR — red, hidden on mobile */}
+      <div className="hidden md:block bg-brand-red text-white">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center gap-6">
           <button
             onClick={() => setMenuOpen(true)}
@@ -162,7 +196,7 @@ function Header() {
             aria-label="Apri menu categorie"
           >
             <Menu className="size-6" />
-            <span className="hidden md:inline text-sm tracking-wide">ACQUISTA PER CATEGORIA</span>
+            <span className="text-sm tracking-wide">ACQUISTA PER CATEGORIA</span>
           </button>
           <a href="#" className="text-sm font-semibold tracking-wide hover:opacity-90">SHOP ONLINE</a>
           <a href="#stores" className="text-sm font-semibold tracking-wide hover:opacity-90">I NOSTRI NEGOZI</a>
@@ -172,9 +206,22 @@ function Header() {
             className="ml-auto inline-flex items-center gap-2 rounded-[10px] bg-whatsapp text-white px-4 py-2 text-sm font-semibold hover:opacity-90 transition"
           >
             <MessageCircle className="size-4" />
-            <span className="hidden sm:inline">Chatta con noi</span>
+            <span>Chatta con noi</span>
           </a>
         </div>
+      </div>
+
+      {/* MOBILE category chips strip (sotto search) */}
+      <div className="md:hidden bg-brand-red text-white overflow-x-auto no-scrollbar">
+        <ul className="flex gap-1 px-3 py-2 min-w-max">
+          {["NOVITÀ", "OFFERTE", "ESTIVO", "CASA", "PARTY", "KIDS", "ANIMALI", "DETERSIVI"].map((c) => (
+            <li key={c}>
+              <a href="#" className="block px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-wide bg-white/10 active:bg-white/25">
+                {c}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <CategoryDrawer open={menuOpen} onClose={() => setMenuOpen(false)} />
