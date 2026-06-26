@@ -114,7 +114,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 bg-white">
       {/* Top utility bar — desktop only */}
-      <div className="hidden md:block bg-white border-b border-border text-xs text-foreground/80">
+      <div className="hidden md:block bg-white border-b border-border text-xs font-bold text-foreground/80">
         <div className="mx-auto max-w-7xl px-4 py-2 flex flex-wrap items-center justify-between gap-x-6 gap-y-1">
           <span className="flex items-center gap-1.5"><MapPin className="size-3.5 text-brand-red" /> I nostri 5 punti vendita</span>
           <span className="flex items-center gap-1.5"><Truck className="size-3.5 text-brand-red" /> Spedizioni in Svizzera Fr. 4.90 — gratis da 49.90</span>
