@@ -444,14 +444,18 @@ function StoresSection() {
               </a>
             </div>
 
-            {/* Mappa Ticino con pinpoint */}
-            <div className="relative rounded-2xl overflow-hidden bg-accent/30">
-              <img
-                src={ticinoMapAsset.url}
-                alt="Mappa del Canton Ticino con i 5 punti vendita DA MORENO"
-                className="w-full h-auto block"
-                loading="lazy"
-              />
+            {/* Mappa stilizzata Ticino con pinpoint */}
+            <div className="relative mx-auto w-full max-w-sm aspect-[4/5]">
+              <svg viewBox="0 0 200 250" className="w-full h-full" aria-hidden="true">
+                <path
+                  d="M95 10 C 110 18, 120 30, 118 45 C 130 55, 145 60, 150 78 C 158 95, 145 110, 152 125 C 162 140, 168 158, 158 175 C 150 192, 130 198, 120 215 C 112 230, 95 238, 80 232 C 65 226, 58 210, 52 195 C 45 178, 35 165, 38 148 C 42 130, 55 118, 50 100 C 46 82, 55 65, 68 52 C 75 38, 80 22, 95 10 Z"
+                  fill="#f8d030"
+                  fillOpacity="0.25"
+                  stroke="#c80000"
+                  strokeWidth="1.5"
+                  strokeOpacity="0.5"
+                />
+              </svg>
               {STORES.map((s) => (
                 <div
                   key={s.name}
@@ -459,10 +463,10 @@ function StoresSection() {
                   style={{ top: s.top, left: s.left }}
                 >
                   <div className="relative flex flex-col items-center">
-                    <span className="px-2 py-0.5 mb-1 rounded-md bg-white shadow text-[10px] font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="px-2 py-0.5 mb-1 rounded-md bg-white shadow text-[10px] font-semibold whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                       {s.name}
                     </span>
-                    <MapPin className="size-7 text-brand-red drop-shadow-md fill-brand-red" strokeWidth={2} />
+                    <MapPin className="size-6 text-brand-red drop-shadow-md fill-brand-red" strokeWidth={2} />
                   </div>
                 </div>
               ))}
