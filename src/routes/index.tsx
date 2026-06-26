@@ -84,7 +84,7 @@ const STORES = [
 
 function HomePage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground pb-20 md:pb-0">
       <Header />
       <Hero />
       <SeasonalBanner />
@@ -95,6 +95,7 @@ function HomePage() {
       <StoresSection />
       <Footer />
       <WhatsAppButton />
+      <MobileTabBar />
     </div>
   );
 }
