@@ -108,7 +108,7 @@ function HomePage() {
 
 /* ────────────────────── HEADER ────────────────────── */
 
-function Header() {
+export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -205,7 +205,7 @@ function Header() {
             <span className="text-sm tracking-wide">ACQUISTA PER CATEGORIA</span>
           </button>
           <a href="#" className="text-sm font-semibold tracking-wide hover:opacity-90">SHOP ONLINE</a>
-          <a href="#stores" className="text-sm font-semibold tracking-wide hover:opacity-90">I NOSTRI NEGOZI</a>
+          <a href="/negozi" className="text-sm font-semibold tracking-wide hover:opacity-90">I NOSTRI NEGOZI</a>
 
           <a
             href="#"
@@ -571,7 +571,7 @@ function StoresSection() {
 
 /* ────────────────────── FOOTER ────────────────────── */
 
-function Footer() {
+export function Footer() {
   return (
     <footer className="bg-foreground text-white/90">
       <div className="mx-auto max-w-7xl px-4 py-12 grid md:grid-cols-4 gap-8">
@@ -617,7 +617,7 @@ function FooterCol({ title, links }: { title: string; links: string[] }) {
 
 /* ────────────────────── WHATSAPP FAB ────────────────────── */
 
-function WhatsAppButton() {
+export function WhatsAppButton() {
   return (
     <a
       href="#"
@@ -631,7 +631,7 @@ function WhatsAppButton() {
 
 /* ────────────────────── MOBILE BOTTOM TAB BAR (APP-LIKE) ────────────────────── */
 
-function MobileTabBar() {
+export function MobileTabBar() {
   const [active, setActive] = useState("home");
   const tabs = [
     { id: "home", label: "Home", icon: Home, href: "/" },
