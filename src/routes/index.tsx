@@ -237,7 +237,7 @@ function Hero() {
             Idee pratiche, dettagli belli e prezzi che ami.
           </p>
           <div className="mt-8">
-            <a href="#linee" className="inline-flex items-center gap-2 rounded-full bg-foreground text-white px-7 py-3.5 font-semibold hover:bg-brand-red transition-colors">
+            <a href="#linee" className="inline-flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-7 py-3.5 font-semibold hover:bg-brand-red-dark transition-colors">
               SCOPRI DI PIÙ <ArrowRight className="size-4" />
             </a>
           </div>
