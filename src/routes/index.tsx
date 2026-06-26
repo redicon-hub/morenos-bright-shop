@@ -21,7 +21,7 @@ import catKids from "@/assets/cat-kids.jpg";
 import catCrea from "@/assets/cat-crea.jpg";
 import catAnimali from "@/assets/cat-animali.jpg";
 import catAltre from "@/assets/cat-altre.jpg";
-import ticinoMapAsset from "@/assets/ticino-map.jpg.asset.json";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -64,7 +64,7 @@ const MACRO_SMALL = [
   { label: "KIDS", img: catKids },
   { label: "PENSA, CREA, REGALA!", img: catCrea },
   { label: "ANIMALI", img: catAnimali },
-  { label: "SCOPRI LE ALTRE", img: catAltre },
+  { label: "SCOPRI LE NOSTRE CATEGORIE", img: catAltre },
 ];
 
 const LINEE = [
@@ -144,7 +144,7 @@ function Header() {
           <div className="flex items-center gap-1 md:gap-2">
             <IconLink icon={Heart} label="Preferiti" />
             <IconLink icon={User} label="Account" />
-            <button className="flex items-center gap-2 rounded-full bg-brand-red text-white px-3 md:px-4 py-2.5 hover:bg-brand-red-dark transition-colors">
+            <button className="flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-3 md:px-4 py-2.5 hover:bg-brand-red-dark transition-colors">
               <ShoppingCart className="size-5" />
               <span className="hidden md:inline text-sm font-semibold">CHF 0.00</span>
               <span className="grid place-items-center size-5 rounded-full bg-brand-yellow text-foreground text-[10px] font-bold">0</span>
@@ -169,7 +169,7 @@ function Header() {
 
           <a
             href="#"
-            className="ml-auto inline-flex items-center gap-2 rounded-full bg-whatsapp text-white px-4 py-2 text-sm font-semibold hover:opacity-90 transition"
+            className="ml-auto inline-flex items-center gap-2 rounded-[10px] bg-whatsapp text-white px-4 py-2 text-sm font-semibold hover:opacity-90 transition"
           >
             <MessageCircle className="size-4" />
             <span className="hidden sm:inline">Chatta con noi</span>
@@ -237,7 +237,7 @@ function Hero() {
             Idee pratiche, dettagli belli e prezzi che ami.
           </p>
           <div className="mt-8">
-            <a href="#linee" className="inline-flex items-center gap-2 rounded-full bg-foreground text-white px-7 py-3.5 font-semibold hover:bg-brand-red transition-colors">
+            <a href="#linee" className="inline-flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-7 py-3.5 font-semibold hover:bg-brand-red-dark transition-colors">
               SCOPRI DI PIÙ <ArrowRight className="size-4" />
             </a>
           </div>
@@ -270,7 +270,7 @@ function SeasonalBanner() {
             Dalle decorazioni ai gadget, tante idee per rendere speciale ogni momento dell'anno.
           </p>
           <div className="mt-6">
-            <a href="#" className="inline-flex items-center gap-2 rounded-full bg-brand-yellow text-foreground px-6 py-3 font-semibold hover:bg-brand-yellow-dark transition-colors">
+            <a href="#" className="inline-flex items-center gap-2 rounded-[10px] bg-brand-yellow text-foreground px-6 py-3 font-semibold hover:bg-brand-yellow-dark transition-colors">
               SCOPRI ORA <ArrowRight className="size-4" />
             </a>
           </div>
@@ -374,7 +374,7 @@ function NovitaPets() {
               Barattoli porta crocchette in latta decorati e tutto ciò che serve ai tuoi amici a 4 zampe.
             </p>
             <div className="mt-6">
-              <span className="inline-flex items-center gap-2 rounded-full bg-brand-red text-white px-6 py-3 font-semibold group-hover:bg-brand-red-dark transition-colors">
+              <span className="inline-flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-6 py-3 font-semibold group-hover:bg-brand-red-dark transition-colors">
                 Scopri le novità <ArrowRight className="size-4" />
               </span>
             </div>
@@ -439,19 +439,23 @@ function StoresSection() {
                   </li>
                 ))}
               </ul>
-              <a href="#" className="inline-flex items-center gap-2 rounded-full bg-brand-red text-white px-5 py-3 font-semibold hover:bg-brand-red-dark transition-colors">
+              <a href="#" className="inline-flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-5 py-3 font-semibold hover:bg-brand-red-dark transition-colors">
                 SCOPRI TUTTI I NEGOZI <ArrowRight className="size-4" />
               </a>
             </div>
 
-            {/* Mappa Ticino con pinpoint */}
-            <div className="relative rounded-2xl overflow-hidden bg-accent/30">
-              <img
-                src={ticinoMapAsset.url}
-                alt="Mappa del Canton Ticino con i 5 punti vendita DA MORENO"
-                className="w-full h-auto block"
-                loading="lazy"
-              />
+            {/* Mappa stilizzata Ticino con pinpoint */}
+            <div className="relative mx-auto w-full max-w-sm aspect-[4/5]">
+              <svg viewBox="0 0 200 250" className="w-full h-full" aria-hidden="true">
+                <path
+                  d="M95 10 C 110 18, 120 30, 118 45 C 130 55, 145 60, 150 78 C 158 95, 145 110, 152 125 C 162 140, 168 158, 158 175 C 150 192, 130 198, 120 215 C 112 230, 95 238, 80 232 C 65 226, 58 210, 52 195 C 45 178, 35 165, 38 148 C 42 130, 55 118, 50 100 C 46 82, 55 65, 68 52 C 75 38, 80 22, 95 10 Z"
+                  fill="#f8d030"
+                  fillOpacity="0.25"
+                  stroke="#c80000"
+                  strokeWidth="1.5"
+                  strokeOpacity="0.5"
+                />
+              </svg>
               {STORES.map((s) => (
                 <div
                   key={s.name}
@@ -459,10 +463,10 @@ function StoresSection() {
                   style={{ top: s.top, left: s.left }}
                 >
                   <div className="relative flex flex-col items-center">
-                    <span className="px-2 py-0.5 mb-1 rounded-md bg-white shadow text-[10px] font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="px-2 py-0.5 mb-1 rounded-md bg-white shadow text-[10px] font-semibold whitespace-nowrap opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                       {s.name}
                     </span>
-                    <MapPin className="size-7 text-brand-red drop-shadow-md fill-brand-red" strokeWidth={2} />
+                    <MapPin className="size-6 text-brand-red drop-shadow-md fill-brand-red" strokeWidth={2} />
                   </div>
                 </div>
               ))}
@@ -499,8 +503,8 @@ function Footer() {
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-white/60">
-          <span>© {new Date().getFullYear()} DA MORENO Sagl — Tutti i diritti riservati.</span>
-          <span>Privacy · Cookie · Termini</span>
+          <span>© {new Date().getFullYear()} DA MORENO SA — Tutti i diritti riservati.</span>
+          <span>Confezionato con cura, prezzato con amore e impacchettato in fiocchi gialli da Red Icon SA</span>
         </div>
       </div>
     </footer>
