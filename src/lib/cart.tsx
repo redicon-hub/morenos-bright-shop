@@ -10,6 +10,23 @@ export type CartItem = {
 
 const STORAGE_KEY = "damoreno_cart_v1";
 const EVT = "damoreno-cart-change";
+const EMPTY: CartItem[] = [];
+
+let cache: CartItem[] = EMPTY;
+
+function read(): CartItem[] {
+  return cache;
+}
+
+function loadFromStorage(): CartItem[] {
+  if (typeof window === "undefined") return EMPTY;
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    return raw ? (JSON.parse(raw) as CartItem[]) : EMPTY;
+  } catch {
+    return EMPTY;
+  }
+}
 
 function read(): CartItem[] {
   if (typeof window === "undefined") return [];
