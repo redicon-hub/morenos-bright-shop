@@ -10,41 +10,74 @@ export type CartItem = {
 
 const STORAGE_KEY = "damoreno_cart_v1";
 const EVT = "damoreno-cart-change";
+const EMPTY: CartItem[] = [];
 
-function read(): CartItem[] {
-  if (typeof window === "undefined") return [];
+let cache: CartItem[] = EMPTY;
+let hydrated = false;
+
+function loadFromStorage(): CartItem[] {
+  if (typeof window === "undefined") return EMPTY;
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as CartItem[]) : [];
+    if (!raw) return EMPTY;
+    const parsed = JSON.parse(raw) as CartItem[];
+    return Array.isArray(parsed) && parsed.length > 0 ? parsed : EMPTY;
   } catch {
-    return [];
+    return EMPTY;
   }
 }
 
+function hydrate() {
+  if (hydrated || typeof window === "undefined") return;
+  hydrated = true;
+  const loaded = loadFromStorage();
+  if (loaded !== EMPTY) cache = loaded;
+}
+
+function read(): CartItem[] {
+  hydrate();
+  return cache;
+}
+
+function readSSR(): CartItem[] {
+  return EMPTY;
+}
+
 function write(items: CartItem[]) {
+  cache = items.length === 0 ? EMPTY : items;
   if (typeof window === "undefined") return;
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(cache));
+  } catch {
+    /* ignore quota errors */
+  }
   window.dispatchEvent(new Event(EVT));
 }
 
 function subscribe(cb: () => void) {
   if (typeof window === "undefined") return () => {};
+  const handler = () => {
+    // Re-load from storage in case change came from another tab
+    const next = loadFromStorage();
+    if (next !== cache) cache = next;
+    cb();
+  };
   window.addEventListener(EVT, cb);
-  window.addEventListener("storage", cb);
+  window.addEventListener("storage", handler);
   return () => {
     window.removeEventListener(EVT, cb);
-    window.removeEventListener("storage", cb);
+    window.removeEventListener("storage", handler);
   };
 }
 
 export function useCart() {
-  const items = useSyncExternalStore(subscribe, read, () => [] as CartItem[]);
+  const items = useSyncExternalStore(subscribe, read, readSSR);
 
   const addItem = useCallback((item: Omit<CartItem, "qty">, qty = 1) => {
-    const current = read();
+    const current = [...read()];
     const idx = current.findIndex((i) => i.slug === item.slug);
     if (idx >= 0) {
-      current[idx].qty += qty;
+      current[idx] = { ...current[idx], qty: current[idx].qty + qty };
     } else {
       current.push({ ...item, qty });
     }
@@ -62,8 +95,9 @@ export function useCart() {
     if (qty <= 0) {
       write(current.filter((i) => i.slug !== slug));
     } else {
-      current[idx].qty = qty;
-      write(current);
+      const next = [...current];
+      next[idx] = { ...next[idx], qty };
+      write(next);
     }
   }, []);
 
