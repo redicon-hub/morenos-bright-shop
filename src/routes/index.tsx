@@ -4,8 +4,9 @@ import {
   Menu, Search, Heart, User, ShoppingCart, MapPin, Truck, ShieldCheck,
   Lightbulb, Gift, MessageCircle, Phone, ChevronDown, ChevronRight,
   Sparkles, Trees, Heart as HeartIcon, Flower2, Egg, Sun, Backpack, Leaf, Ghost,
-  ArrowRight, Home, LayoutGrid, X,
+  ArrowRight, Home, LayoutGrid, X, MoreHorizontal, Apple, SprayCan, Sparkle,
 } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import logo from "@/assets/logo-damoreno.png";
 import heroLiving from "@/assets/hero-living-room.jpg";
 import seasonalAutumn from "@/assets/seasonal-autumn.jpg";
@@ -19,8 +20,7 @@ import catCasalinghi from "@/assets/cat-casalinghi.jpg";
 import catParty from "@/assets/cat-party.jpg";
 import catKids from "@/assets/cat-kids.jpg";
 import catCrea from "@/assets/cat-crea.jpg";
-// catAnimali rimosso dalla home (presente in categorie/drawer)
-import catAltre from "@/assets/cat-altre.jpg";
+import catAnimali from "@/assets/cat-animali.jpg";
 
 
 export const Route = createFileRoute("/")({
