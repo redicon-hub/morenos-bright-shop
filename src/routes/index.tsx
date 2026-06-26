@@ -21,7 +21,7 @@ import catKids from "@/assets/cat-kids.jpg";
 import catCrea from "@/assets/cat-crea.jpg";
 import catAnimali from "@/assets/cat-animali.jpg";
 import catAltre from "@/assets/cat-altre.jpg";
-import ticinoMapAsset from "@/assets/ticino-map.jpg.asset.json";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
