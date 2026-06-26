@@ -64,7 +64,7 @@ const MACRO_SMALL = [
   { label: "KIDS", img: catKids },
   { label: "PENSA, CREA, REGALA!", img: catCrea },
   { label: "ANIMALI", img: catAnimali },
-  { label: "SCOPRI LE ALTRE", img: catAltre },
+  { label: "SCOPRI LE NOSTRE CATEGORIE", img: catAltre },
 ];
 
 const LINEE = [
