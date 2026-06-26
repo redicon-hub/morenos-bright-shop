@@ -367,12 +367,50 @@ function MacroCategories() {
           <CircleCategory key={label} label={label} img={img} size="lg" />
         ))}
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 justify-items-center">
-        {MACRO_SMALL.slice(0, 4).map(({ label, img }) => (
+      <div className="grid grid-cols-5 gap-3 md:gap-6 justify-items-center">
+        {MACRO_SMALL.map(({ label, img }) => (
           <CircleCategory key={label} label={label} img={img} size="sm" />
         ))}
+        <MoreCategoriesCircle />
       </div>
     </section>
+  );
+}
+
+function MoreCategoriesCircle() {
+  const dim = "size-24 md:size-32";
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <button className="group flex flex-col items-center gap-2 md:gap-3 text-center">
+          <div
+            className={`${dim} rounded-full overflow-hidden brand-shadow ring-4 ring-white grid place-items-center bg-brand-yellow group-hover:scale-105 transition-transform`}
+          >
+            <MoreHorizontal className="size-10 md:size-14 text-brand-red" strokeWidth={2.5} />
+          </div>
+          <span className="text-[11px] md:text-sm font-semibold tracking-wide text-foreground/80 group-hover:text-brand-red transition-colors max-w-[130px]">
+            SCOPRI LE ALTRE CATEGORIE
+          </span>
+        </button>
+      </PopoverTrigger>
+      <PopoverContent align="center" className="w-64 p-2 rounded-[10px]">
+        <ul className="flex flex-col">
+          {MACRO_SERVICE.map(({ label, icon: Icon }) => (
+            <li key={label}>
+              <a
+                href="#"
+                className="flex items-center gap-3 px-3 py-3 rounded-md hover:bg-accent transition-colors"
+              >
+                <span className="grid place-items-center size-9 rounded-full bg-brand-red/10 text-brand-red">
+                  <Icon className="size-5" />
+                </span>
+                <span className="text-sm font-semibold tracking-wide text-foreground/90">{label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </PopoverContent>
+    </Popover>
   );
 }
 
