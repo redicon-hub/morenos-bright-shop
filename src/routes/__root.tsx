@@ -85,8 +85,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "DA MORENO – Dove tutto costa meno | Casa, idee e regali" },
       { name: "twitter:description", content: "DA MORENO: tutto per la tua casa, ogni giorno. Idee pratiche, dettagli belli e prezzi che ami. 5 negozi in Ticino e spedizioni in tutta la Svizzera." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c5bae32e-7d34-48ab-adeb-1c3ebe1e23a4/id-preview-7841a50e--56c4976e-8de5-41a2-94f6-9365adaf9038.lovable.app-1782466327850.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c5bae32e-7d34-48ab-adeb-1c3ebe1e23a4/id-preview-7841a50e--56c4976e-8de5-41a2-94f6-9365adaf9038.lovable.app-1782466327850.png" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/f366be6c-34ff-4823-b195-bf8c31afdf2f" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/f366be6c-34ff-4823-b195-bf8c31afdf2f" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
