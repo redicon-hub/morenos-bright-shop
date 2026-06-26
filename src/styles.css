@@ -35,8 +35,8 @@
   --color-brand-yellow-dark: var(--brand-yellow-dark);
   --color-brand-blue: var(--brand-blue);
   --color-whatsapp: var(--whatsapp);
-  --font-display: "Merriweather Sans", system-ui, sans-serif;
-  --font-sans: "Merriweather", Georgia, serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Nunito Sans", system-ui, sans-serif;
 }
 
 :root {
