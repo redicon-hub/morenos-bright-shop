@@ -63,8 +63,8 @@ function NegoziPage() {
               5 negozi in Ticino dove trovare tutto per la casa, ogni giorno.
             </p>
           </div>
-          <div className="h-48 md:h-auto md:min-h-[260px] overflow-hidden">
-            <img src={heroLiving} alt="Interno negozio DA MORENO" className="w-full h-full object-cover" />
+          <div className="h-48 md:h-auto md:min-h-[280px] overflow-hidden">
+            <img src={heroNegozi} alt="Interno negozio DA MORENO" className="w-full h-full object-cover" />
           </div>
         </div>
       </section>
