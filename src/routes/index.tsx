@@ -4,7 +4,7 @@ import {
   Menu, Search, Heart, User, ShoppingCart, MapPin, Truck, ShieldCheck,
   Lightbulb, Gift, MessageCircle, Phone, ChevronDown, ChevronRight,
   Sparkles, Trees, Heart as HeartIcon, Flower2, Egg, Sun, Backpack, Leaf, Ghost,
-  ArrowRight,
+  ArrowRight, Home, LayoutGrid, X,
 } from "lucide-react";
 import logo from "@/assets/logo-damoreno.png";
 import heroLiving from "@/assets/hero-living-room.jpg";
