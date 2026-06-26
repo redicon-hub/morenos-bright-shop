@@ -63,7 +63,13 @@ const MACRO_SMALL = [
   { label: "PARTY", img: catParty },
   { label: "KIDS", img: catKids },
   { label: "PENSA, CREA, REGALA!", img: catCrea },
-  { label: "SCOPRI LE NOSTRE CATEGORIE", img: catAltre },
+  { label: "ANIMALI", img: catAnimali },
+];
+
+const MACRO_SERVICE = [
+  { label: "ALIMENTARI", icon: Apple },
+  { label: "DETERSIVI", icon: SprayCan },
+  { label: "IGIENE PERSONA", icon: Sparkle },
 ];
 
 const LINEE = [
