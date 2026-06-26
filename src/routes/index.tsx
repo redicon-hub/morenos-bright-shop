@@ -54,23 +54,23 @@ const SEASONS = [
 ];
 
 const MACRO_LARGE = [
-  { label: "HOME DECOR", img: catHomeDecor },
-  { label: "ARREDAMENTO", img: lineaArredamento },
-  { label: "PROFUMAZIONE", img: lineaProfumazione },
-  { label: "CASALINGHI", img: catCasalinghi },
+  { label: "HOME DECOR", img: catHomeDecor, slug: "home-decor" },
+  { label: "ARREDAMENTO", img: lineaArredamento, slug: "arredamento" },
+  { label: "PROFUMAZIONE", img: lineaProfumazione, slug: "profumazione" },
+  { label: "CASALINGHI", img: catCasalinghi, slug: "casalinghi" },
 ];
 
 const MACRO_SMALL = [
-  { label: "PARTY", img: catParty },
-  { label: "KIDS", img: catKids },
-  { label: "PENSA, CREA, REGALA!", img: catCrea },
-  { label: "ANIMALI", img: catAnimali },
+  { label: "PARTY", img: catParty, slug: "party" },
+  { label: "KIDS", img: catKids, slug: "kids" },
+  { label: "PENSA, CREA, REGALA!", img: catCrea, slug: "pensa-crea-regala" },
+  { label: "ANIMALI", img: catAnimali, slug: "animali" },
 ];
 
 const MACRO_SERVICE = [
-  { label: "ALIMENTARI", icon: Apple },
-  { label: "DETERSIVI", icon: SprayCan },
-  { label: "IGIENE PERSONA", icon: Sparkle },
+  { label: "ALIMENTARI", icon: Apple, slug: "alimentari" },
+  { label: "DETERSIVI", icon: SprayCan, slug: "detersivi" },
+  { label: "IGIENE PERSONA", icon: Sparkle, slug: "igiene-persona" },
 ];
 
 const LINEE = [
@@ -367,13 +367,13 @@ function MacroCategories() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-10">
       <div className="grid grid-cols-4 gap-4 md:gap-8 justify-items-center mb-8">
-        {MACRO_LARGE.map(({ label, img }) => (
-          <CircleCategory key={label} label={label} img={img} size="lg" />
+        {MACRO_LARGE.map(({ label, img, slug }) => (
+          <CircleCategory key={label} label={label} img={img} size="lg" slug={slug} />
         ))}
       </div>
       <div className="grid grid-cols-5 gap-3 md:gap-6 justify-items-center">
-        {MACRO_SMALL.map(({ label, img }) => (
-          <CircleCategory key={label} label={label} img={img} size="sm" />
+        {MACRO_SMALL.map(({ label, img, slug }) => (
+          <CircleCategory key={label} label={label} img={img} size="sm" slug={slug} />
         ))}
         <MoreCategoriesCircle />
       </div>
@@ -399,17 +399,18 @@ function MoreCategoriesCircle() {
       </PopoverTrigger>
       <PopoverContent align="center" className="w-64 p-2 rounded-[10px]">
         <ul className="flex flex-col">
-          {MACRO_SERVICE.map(({ label, icon: Icon }) => (
+          {MACRO_SERVICE.map(({ label, icon: Icon, slug }) => (
             <li key={label}>
-              <a
-                href="#"
+              <Link
+                to="/categoria/$slug"
+                params={{ slug }}
                 className="flex items-center gap-3 px-3 py-3 rounded-md hover:bg-accent transition-colors"
               >
                 <span className="grid place-items-center size-9 rounded-full bg-brand-red/10 text-brand-red">
                   <Icon className="size-5" />
                 </span>
                 <span className="text-sm font-semibold tracking-wide text-foreground/90">{label}</span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -419,20 +420,21 @@ function MoreCategoriesCircle() {
 }
 
 function CircleCategory({
-  label, img, size,
+  label, img, size, slug,
 }: {
   label: string;
   img: string;
   size: "lg" | "sm";
+  slug: string;
 }) {
   const dim = size === "lg" ? "size-28 md:size-40" : "size-24 md:size-32";
   return (
-    <a href="#" className="group flex flex-col items-center gap-2 md:gap-3 text-center">
+    <Link to="/categoria/$slug" params={{ slug }} className="group flex flex-col items-center gap-2 md:gap-3 text-center">
       <div className={`${dim} rounded-full overflow-hidden brand-shadow ring-4 ring-white group-hover:scale-105 transition-transform`}>
         <img src={img} alt={label} loading="lazy" className="w-full h-full object-cover" width={400} height={400} />
       </div>
       <span className="text-[11px] md:text-sm font-semibold tracking-wide text-foreground/80 group-hover:text-brand-red transition-colors max-w-[130px]">{label}</span>
-    </a>
+    </Link>
   );
 }
 
