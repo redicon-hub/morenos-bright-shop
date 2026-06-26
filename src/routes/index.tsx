@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   Menu, Search, Heart, User, ShoppingCart, MapPin, Truck, ShieldCheck,
@@ -7,6 +7,7 @@ import {
   ArrowRight, Home, LayoutGrid, X, MoreHorizontal, Apple, SprayCan, Sparkle,
 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { useCart, formatCHF } from "@/lib/cart";
 import logo from "@/assets/logo-damoreno.png";
 import heroLiving from "@/assets/hero-living-room.jpg";
 import seasonalAutumn from "@/assets/seasonal-autumn.jpg";
@@ -110,6 +111,7 @@ function HomePage() {
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { count, subtotal } = useCart();
 
   return (
     <header className="sticky top-0 z-40 bg-white">
@@ -137,16 +139,17 @@ export function Header() {
           >
             <Menu className="size-5 text-foreground" />
           </button>
-          <a href="/" className="flex-1 grid place-items-center">
+          <Link to="/" className="flex-1 grid place-items-center">
             <img src={logo} alt="DA MORENO" className="h-10 w-auto" />
-          </a>
-          <button
+          </Link>
+          <Link
+            to="/carrello"
             className="relative grid place-items-center size-10 rounded-[10px] bg-brand-red text-white active:bg-brand-red-dark transition-colors"
             aria-label="Carrello"
           >
             <ShoppingCart className="size-5" />
-            <span className="absolute -top-1 -right-1 grid place-items-center size-4 rounded-full bg-white text-brand-red text-[9px] font-bold border border-brand-red">0</span>
-          </button>
+            <span className="absolute -top-1 -right-1 grid place-items-center size-4 rounded-full bg-white text-brand-red text-[9px] font-bold border border-brand-red">{count}</span>
+          </Link>
         </div>
         {/* Mobile search pill */}
         <div className="px-4 pb-3">
@@ -164,9 +167,9 @@ export function Header() {
       {/* DESKTOP HEADER — GIALLA */}
       <div className="hidden md:block bg-brand-yellow border-b border-brand-yellow-dark/40">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center gap-4">
-          <a href="/" className="shrink-0">
+          <Link to="/" className="shrink-0">
             <img src={logo} alt="DA MORENO – dove tutto costa meno" className="h-14 md:h-16 w-auto" />
-          </a>
+          </Link>
 
           <div className="flex-1 max-w-2xl mx-auto">
             <div className="relative">
@@ -184,11 +187,11 @@ export function Header() {
           <div className="flex items-center gap-1 md:gap-2">
             <IconLink icon={Heart} label="Preferiti" />
             <IconLink icon={User} label="Account" />
-            <button className="flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-3 md:px-4 py-2.5 hover:bg-brand-red-dark transition-colors">
+            <Link to="/carrello" className="flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-3 md:px-4 py-2.5 hover:bg-brand-red-dark transition-colors">
               <ShoppingCart className="size-5" />
-              <span className="hidden md:inline text-sm font-semibold">CHF 0.00</span>
-              <span className="grid place-items-center size-5 rounded-full bg-brand-yellow text-foreground text-[10px] font-bold">0</span>
-            </button>
+              <span className="hidden md:inline text-sm font-semibold">{formatCHF(subtotal)}</span>
+              <span className="grid place-items-center size-5 rounded-full bg-brand-yellow text-foreground text-[10px] font-bold">{count}</span>
+            </Link>
           </div>
         </div>
       </div>
@@ -204,8 +207,8 @@ export function Header() {
             <Menu className="size-6" />
             <span className="text-sm tracking-wide">ACQUISTA PER CATEGORIA</span>
           </button>
-          <a href="#" className="text-sm font-semibold tracking-wide hover:opacity-90">SHOP ONLINE</a>
-          <a href="/negozi" className="text-sm font-semibold tracking-wide hover:opacity-90">I NOSTRI NEGOZI</a>
+          <Link to="/shop" className="text-sm font-semibold tracking-wide hover:opacity-90">SHOP ONLINE</Link>
+          <Link to="/negozi" className="text-sm font-semibold tracking-wide hover:opacity-90">I NOSTRI NEGOZI</Link>
 
           <a
             href="#"
@@ -222,9 +225,9 @@ export function Header() {
         <ul className="flex gap-1 px-3 py-2 min-w-max">
           {["NOVITÀ", "OFFERTE", "ESTIVO", "CASA", "PARTY", "KIDS", "ANIMALI", "DETERSIVI"].map((c) => (
             <li key={c}>
-              <a href="#" className="block px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-wide bg-white/10 active:bg-white/25">
+              <Link to="/shop" className="block px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-wide bg-white/10 active:bg-white/25">
                 {c}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -261,14 +264,15 @@ function CategoryDrawer({ open, onClose }: { open: boolean; onClose: () => void 
         </div>
         <nav className="bg-white card-shadow m-3 rounded-md">
           {HAMBURGER_CATEGORIES.map((c) => (
-            <a
+            <Link
               key={c}
-              href="#"
+              to="/shop"
+              onClick={onClose}
               className="flex items-center justify-between px-5 py-4 border-b border-border last:border-0 hover:bg-accent/50 transition-colors"
             >
               <span className="text-base tracking-wide text-foreground/90">{c}</span>
               <ChevronRight className="size-5 text-muted-foreground" />
-            </a>
+            </Link>
           ))}
         </nav>
       </aside>
@@ -290,9 +294,9 @@ function Hero() {
             Idee pratiche, dettagli belli e prezzi che ami.
           </p>
           <div className="mt-4 md:mt-8">
-            <a href="#linee" className="inline-flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-5 md:px-7 py-3 md:py-3.5 text-sm md:text-base font-semibold hover:bg-brand-red-dark transition-colors">
+            <Link to="/shop" className="inline-flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-5 md:px-7 py-3 md:py-3.5 text-sm md:text-base font-semibold hover:bg-brand-red-dark transition-colors">
               SCOPRI DI PIÙ <ArrowRight className="size-4" />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="rounded-2xl overflow-hidden brand-shadow bg-muted aspect-[16/10] md:aspect-auto md:min-h-0 order-1 md:order-2">
