@@ -1,9 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MapPin, Phone, Clock, MessageCircle, ChevronRight, Home, Tag, Sparkles, FlaskConical, Apple, Baby, Headphones } from "lucide-react";
 import { Header, Footer, WhatsAppButton, MobileTabBar } from "./index";
-import ticinoMap from "@/assets/ticino-map.jpg.asset.json";
-import heroLiving from "@/assets/hero-living-room.jpg";
-import storefront from "@/assets/linea-arredamento.jpg";
+import heroNegozi from "@/assets/negozi-hero.jpg";
+import storefront from "@/assets/negozio-storefront.jpg";
 
 export const Route = createFileRoute("/negozi")({
   head: () => ({
@@ -64,8 +63,8 @@ function NegoziPage() {
               5 negozi in Ticino dove trovare tutto per la casa, ogni giorno.
             </p>
           </div>
-          <div className="h-48 md:h-auto md:min-h-[260px] overflow-hidden">
-            <img src={heroLiving} alt="Interno negozio DA MORENO" className="w-full h-full object-cover" />
+          <div className="h-48 md:h-auto md:min-h-[280px] overflow-hidden">
+            <img src={heroNegozi} alt="Interno negozio DA MORENO" className="w-full h-full object-cover" />
           </div>
         </div>
       </section>
@@ -75,7 +74,13 @@ function NegoziPage() {
         <div className="grid md:grid-cols-[1.3fr_1fr] gap-5 md:gap-6">
           {/* Mappa */}
           <div className="relative rounded-2xl overflow-hidden brand-shadow bg-white aspect-[4/3] md:aspect-auto md:min-h-[420px]">
-            <img src={ticinoMap.url} alt="Mappa del Canton Ticino" className="w-full h-full object-cover" />
+            <iframe
+              title="Mappa Canton Ticino"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=8.50%2C45.95%2C9.20%2C46.55&layer=mapnik"
+              className="absolute inset-0 w-full h-full border-0"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 pointer-events-none"></div>
             {STORES.map((s) => (
               <div
                 key={s.id}
