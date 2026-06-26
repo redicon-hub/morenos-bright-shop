@@ -530,7 +530,7 @@ function StoresSection() {
                   </li>
                 ))}
               </ul>
-              <a href="#" className="inline-flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-5 py-3 font-semibold hover:bg-brand-red-dark transition-colors">
+              <a href="/negozi" className="inline-flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-5 py-3 font-semibold hover:bg-brand-red-dark transition-colors">
                 SCOPRI TUTTI I NEGOZI <ArrowRight className="size-4" />
               </a>
             </div>
