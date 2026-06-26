@@ -50,7 +50,7 @@ function NegoziPage() {
       <Header />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-background h-[260px] md:h-[clamp(230px,24vw,310px)]">
+      <section className="relative overflow-hidden bg-background h-[260px] md:h-[300px] lg:h-[320px]">
         <img
           src={heroNegozi}
           alt="Interno negozio DA MORENO"
