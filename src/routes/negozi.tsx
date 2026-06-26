@@ -56,7 +56,7 @@ function NegoziPage() {
           alt="Interno negozio DA MORENO"
           className="absolute inset-y-0 right-0 h-full w-full md:w-[62%] object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 via-45% to-background/0 md:to-background/5" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 via-[45%] to-background/0 md:to-background/5" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/0 to-background md:to-background/70" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 h-full flex items-center">
