@@ -270,7 +270,7 @@ function SeasonalBanner() {
             Dalle decorazioni ai gadget, tante idee per rendere speciale ogni momento dell'anno.
           </p>
           <div className="mt-6">
-            <a href="#" className="inline-flex items-center gap-2 rounded-full bg-brand-yellow text-foreground px-6 py-3 font-semibold hover:bg-brand-yellow-dark transition-colors">
+            <a href="#" className="inline-flex items-center gap-2 rounded-[10px] bg-brand-yellow text-foreground px-6 py-3 font-semibold hover:bg-brand-yellow-dark transition-colors">
               SCOPRI ORA <ArrowRight className="size-4" />
             </a>
           </div>
