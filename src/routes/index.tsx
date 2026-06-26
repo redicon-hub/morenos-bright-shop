@@ -578,9 +578,64 @@ function WhatsAppButton() {
     <a
       href="#"
       aria-label="Contattaci su WhatsApp"
-      className="fixed bottom-6 right-6 z-30 grid place-items-center size-14 rounded-full bg-whatsapp text-white shadow-2xl hover:scale-105 transition-transform"
+      className="fixed bottom-24 md:bottom-6 right-4 md:right-6 z-30 grid place-items-center size-12 md:size-14 rounded-full bg-whatsapp text-white shadow-2xl hover:scale-105 transition-transform"
     >
-      <MessageCircle className="size-6" />
+      <MessageCircle className="size-5 md:size-6" />
     </a>
+  );
+}
+
+/* ────────────────────── MOBILE BOTTOM TAB BAR (APP-LIKE) ────────────────────── */
+
+function MobileTabBar() {
+  const [active, setActive] = useState("home");
+  const tabs = [
+    { id: "home", label: "Home", icon: Home, href: "/" },
+    { id: "cat", label: "Categorie", icon: LayoutGrid, href: "#" },
+    { id: "search", label: "Cerca", icon: Search, href: "#", center: true },
+    { id: "fav", label: "Preferiti", icon: Heart, href: "#" },
+    { id: "acc", label: "Account", icon: User, href: "#" },
+  ];
+  return (
+    <nav
+      className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-border"
+      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+      aria-label="Navigazione principale"
+    >
+      <ul className="grid grid-cols-5">
+        {tabs.map((t) => {
+          const Icon = t.icon;
+          const isActive = active === t.id;
+          if (t.center) {
+            return (
+              <li key={t.id} className="relative">
+                <button
+                  onClick={() => setActive(t.id)}
+                  className="w-full h-16 flex flex-col items-center justify-end pb-1.5"
+                >
+                  <span className="absolute -top-5 grid place-items-center size-12 rounded-full bg-brand-red text-white shadow-lg ring-4 ring-white">
+                    <Icon className="size-5" />
+                  </span>
+                  <span className="mt-1 text-[10px] font-semibold text-foreground/70">{t.label}</span>
+                </button>
+              </li>
+            );
+          }
+          return (
+            <li key={t.id}>
+              <button
+                onClick={() => setActive(t.id)}
+                className={`w-full h-16 flex flex-col items-center justify-center gap-1 transition-colors ${
+                  isActive ? "text-brand-red" : "text-foreground/60"
+                }`}
+              >
+                <Icon className="size-5" strokeWidth={isActive ? 2.5 : 2} />
+                <span className="text-[10px] font-semibold">{t.label}</span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 }
