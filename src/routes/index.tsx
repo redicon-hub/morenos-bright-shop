@@ -4,7 +4,7 @@ import {
   Menu, Search, Heart, User, ShoppingCart, MapPin, Truck, ShieldCheck,
   Lightbulb, Gift, MessageCircle, Phone, ChevronDown, ChevronRight,
   Sparkles, Trees, Heart as HeartIcon, Flower2, Egg, Sun, Backpack, Leaf, Ghost,
-  ArrowRight,
+  ArrowRight, Home, LayoutGrid, X,
 } from "lucide-react";
 import logo from "@/assets/logo-damoreno.png";
 import heroLiving from "@/assets/hero-living-room.jpg";
@@ -19,7 +19,7 @@ import catCasalinghi from "@/assets/cat-casalinghi.jpg";
 import catParty from "@/assets/cat-party.jpg";
 import catKids from "@/assets/cat-kids.jpg";
 import catCrea from "@/assets/cat-crea.jpg";
-import catAnimali from "@/assets/cat-animali.jpg";
+// catAnimali rimosso dalla home (presente in categorie/drawer)
 import catAltre from "@/assets/cat-altre.jpg";
 
 
@@ -63,7 +63,6 @@ const MACRO_SMALL = [
   { label: "PARTY", img: catParty },
   { label: "KIDS", img: catKids },
   { label: "PENSA, CREA, REGALA!", img: catCrea },
-  { label: "ANIMALI", img: catAnimali },
   { label: "SCOPRI LE NOSTRE CATEGORIE", img: catAltre },
 ];
 
@@ -85,7 +84,7 @@ const STORES = [
 
 function HomePage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground pb-20 md:pb-0">
       <Header />
       <Hero />
       <SeasonalBanner />
@@ -96,6 +95,7 @@ function HomePage() {
       <StoresSection />
       <Footer />
       <WhatsAppButton />
+      <MobileTabBar />
     </div>
   );
 }
@@ -107,12 +107,12 @@ function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-white">
-      {/* Top utility bar — BIANCA */}
-      <div className="bg-white border-b border-border text-xs text-foreground/80">
+      {/* Top utility bar — desktop only */}
+      <div className="hidden md:block bg-white border-b border-border text-xs text-foreground/80">
         <div className="mx-auto max-w-7xl px-4 py-2 flex flex-wrap items-center justify-between gap-x-6 gap-y-1">
           <span className="flex items-center gap-1.5"><MapPin className="size-3.5 text-brand-red" /> I nostri 5 punti vendita</span>
-          <span className="hidden md:flex items-center gap-1.5"><Truck className="size-3.5 text-brand-red" /> Spedizioni in Svizzera Fr. 4.90 — gratis da 49.90</span>
-          <span className="hidden md:flex items-center gap-1.5"><Phone className="size-3.5 text-brand-red" /> +41 76 580 75 17</span>
+          <span className="flex items-center gap-1.5"><Truck className="size-3.5 text-brand-red" /> Spedizioni in Svizzera Fr. 4.90 — gratis da 49.90</span>
+          <span className="flex items-center gap-1.5"><Phone className="size-3.5 text-brand-red" /> +41 76 580 75 17</span>
           <div className="flex items-center gap-4 font-medium">
             <a href="#" className="hover:text-brand-red">CONTATTI</a>
             <a href="#" className="hover:text-brand-red">Accedi / Registrati</a>
@@ -121,8 +121,42 @@ function Header() {
         </div>
       </div>
 
-      {/* Main header — GIALLA */}
-      <div className="bg-brand-yellow border-b border-brand-yellow-dark/40">
+      {/* MOBILE HEADER — APP STYLE */}
+      <div className="md:hidden bg-brand-yellow">
+        <div className="px-4 py-2.5 flex items-center gap-3">
+          <button
+            onClick={() => setMenuOpen(true)}
+            className="grid place-items-center size-10 rounded-[10px] bg-white/70 active:bg-white transition-colors"
+            aria-label="Apri menu"
+          >
+            <Menu className="size-5 text-foreground" />
+          </button>
+          <a href="/" className="flex-1 grid place-items-center">
+            <img src={logo} alt="DA MORENO" className="h-10 w-auto" />
+          </a>
+          <button
+            className="relative grid place-items-center size-10 rounded-[10px] bg-brand-red text-white active:bg-brand-red-dark transition-colors"
+            aria-label="Carrello"
+          >
+            <ShoppingCart className="size-5" />
+            <span className="absolute -top-1 -right-1 grid place-items-center size-4 rounded-full bg-white text-brand-red text-[9px] font-bold border border-brand-red">0</span>
+          </button>
+        </div>
+        {/* Mobile search pill */}
+        <div className="px-4 pb-3">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="Cerca prodotti, idee..."
+              className="w-full rounded-full bg-white pl-11 pr-4 py-2.5 text-sm outline-none border border-white focus:border-brand-red transition-colors"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* DESKTOP HEADER — GIALLA */}
+      <div className="hidden md:block bg-brand-yellow border-b border-brand-yellow-dark/40">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center gap-4">
           <a href="/" className="shrink-0">
             <img src={logo} alt="DA MORENO – dove tutto costa meno" className="h-14 md:h-16 w-auto" />
@@ -153,8 +187,8 @@ function Header() {
         </div>
       </div>
 
-      {/* Nav bar with hamburger + Chatta con noi a destra */}
-      <div className="bg-brand-red text-white">
+      {/* DESKTOP NAV BAR — red, hidden on mobile */}
+      <div className="hidden md:block bg-brand-red text-white">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center gap-6">
           <button
             onClick={() => setMenuOpen(true)}
@@ -162,7 +196,7 @@ function Header() {
             aria-label="Apri menu categorie"
           >
             <Menu className="size-6" />
-            <span className="hidden md:inline text-sm tracking-wide">ACQUISTA PER CATEGORIA</span>
+            <span className="text-sm tracking-wide">ACQUISTA PER CATEGORIA</span>
           </button>
           <a href="#" className="text-sm font-semibold tracking-wide hover:opacity-90">SHOP ONLINE</a>
           <a href="#stores" className="text-sm font-semibold tracking-wide hover:opacity-90">I NOSTRI NEGOZI</a>
@@ -172,9 +206,22 @@ function Header() {
             className="ml-auto inline-flex items-center gap-2 rounded-[10px] bg-whatsapp text-white px-4 py-2 text-sm font-semibold hover:opacity-90 transition"
           >
             <MessageCircle className="size-4" />
-            <span className="hidden sm:inline">Chatta con noi</span>
+            <span>Chatta con noi</span>
           </a>
         </div>
+      </div>
+
+      {/* MOBILE category chips strip (sotto search) */}
+      <div className="md:hidden bg-brand-red text-white overflow-x-auto no-scrollbar">
+        <ul className="flex gap-1 px-3 py-2 min-w-max">
+          {["NOVITÀ", "OFFERTE", "ESTIVO", "CASA", "PARTY", "KIDS", "ANIMALI", "DETERSIVI"].map((c) => (
+            <li key={c}>
+              <a href="#" className="block px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-wide bg-white/10 active:bg-white/25">
+                {c}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <CategoryDrawer open={menuOpen} onClose={() => setMenuOpen(false)} />
@@ -203,7 +250,7 @@ function CategoryDrawer({ open, onClose }: { open: boolean; onClose: () => void 
       >
         <div className="bg-brand-yellow h-3" />
         <div className="bg-brand-red text-white px-5 py-5 flex items-center gap-3">
-          <button onClick={onClose} aria-label="Chiudi menu"><Menu className="size-6" /></button>
+          <button onClick={onClose} aria-label="Chiudi menu" className="grid place-items-center size-9 rounded-full bg-white/15 active:bg-white/30"><X className="size-5" /></button>
           <h2 className="text-xl font-semibold">Acquista per categoria</h2>
         </div>
         <nav className="bg-white card-shadow m-3 rounded-md">
@@ -227,22 +274,22 @@ function CategoryDrawer({ open, onClose }: { open: boolean; onClose: () => void 
 
 function Hero() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-6 md:py-10">
-      <div className="grid md:grid-cols-[1fr_1.4fr] gap-6 items-stretch">
-        <div className="bg-white rounded-2xl brand-shadow p-8 md:p-10 flex flex-col justify-center">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+    <section className="mx-auto max-w-7xl px-3 md:px-4 py-4 md:py-10">
+      <div className="grid md:grid-cols-[1fr_1.4fr] gap-3 md:gap-6 items-stretch">
+        <div className="bg-white rounded-2xl brand-shadow p-5 md:p-10 flex flex-col justify-center order-2 md:order-1">
+          <h1 className="text-2xl md:text-5xl font-bold leading-tight">
             Tutto per la tua casa,<br />ogni giorno.
           </h1>
-          <p className="mt-4 text-muted-foreground text-lg">
+          <p className="mt-2 md:mt-4 text-muted-foreground text-sm md:text-lg">
             Idee pratiche, dettagli belli e prezzi che ami.
           </p>
-          <div className="mt-8">
-            <a href="#linee" className="inline-flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-7 py-3.5 font-semibold hover:bg-brand-red-dark transition-colors">
+          <div className="mt-4 md:mt-8">
+            <a href="#linee" className="inline-flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-5 md:px-7 py-3 md:py-3.5 text-sm md:text-base font-semibold hover:bg-brand-red-dark transition-colors">
               SCOPRI DI PIÙ <ArrowRight className="size-4" />
             </a>
           </div>
         </div>
-        <div className="rounded-2xl overflow-hidden brand-shadow bg-muted min-h-[280px] md:min-h-0">
+        <div className="rounded-2xl overflow-hidden brand-shadow bg-muted aspect-[16/10] md:aspect-auto md:min-h-0 order-1 md:order-2">
           <img
             src={heroLiving}
             alt="Salotto accogliente con divano beige e decorazioni"
@@ -531,9 +578,64 @@ function WhatsAppButton() {
     <a
       href="#"
       aria-label="Contattaci su WhatsApp"
-      className="fixed bottom-6 right-6 z-30 grid place-items-center size-14 rounded-full bg-whatsapp text-white shadow-2xl hover:scale-105 transition-transform"
+      className="fixed bottom-24 md:bottom-6 right-4 md:right-6 z-30 grid place-items-center size-12 md:size-14 rounded-full bg-whatsapp text-white shadow-2xl hover:scale-105 transition-transform"
     >
-      <MessageCircle className="size-6" />
+      <MessageCircle className="size-5 md:size-6" />
     </a>
+  );
+}
+
+/* ────────────────────── MOBILE BOTTOM TAB BAR (APP-LIKE) ────────────────────── */
+
+function MobileTabBar() {
+  const [active, setActive] = useState("home");
+  const tabs = [
+    { id: "home", label: "Home", icon: Home, href: "/" },
+    { id: "cat", label: "Categorie", icon: LayoutGrid, href: "#" },
+    { id: "search", label: "Cerca", icon: Search, href: "#", center: true },
+    { id: "fav", label: "Preferiti", icon: Heart, href: "#" },
+    { id: "acc", label: "Account", icon: User, href: "#" },
+  ];
+  return (
+    <nav
+      className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-border"
+      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+      aria-label="Navigazione principale"
+    >
+      <ul className="grid grid-cols-5">
+        {tabs.map((t) => {
+          const Icon = t.icon;
+          const isActive = active === t.id;
+          if (t.center) {
+            return (
+              <li key={t.id} className="relative">
+                <button
+                  onClick={() => setActive(t.id)}
+                  className="w-full h-16 flex flex-col items-center justify-end pb-1.5"
+                >
+                  <span className="absolute -top-5 grid place-items-center size-12 rounded-full bg-brand-red text-white shadow-lg ring-4 ring-white">
+                    <Icon className="size-5" />
+                  </span>
+                  <span className="mt-1 text-[10px] font-semibold text-foreground/70">{t.label}</span>
+                </button>
+              </li>
+            );
+          }
+          return (
+            <li key={t.id}>
+              <button
+                onClick={() => setActive(t.id)}
+                className={`w-full h-16 flex flex-col items-center justify-center gap-1 transition-colors ${
+                  isActive ? "text-brand-red" : "text-foreground/60"
+                }`}
+              >
+                <Icon className="size-5" strokeWidth={isActive ? 2.5 : 2} />
+                <span className="text-[10px] font-semibold">{t.label}</span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 }
