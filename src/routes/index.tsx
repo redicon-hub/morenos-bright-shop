@@ -2,10 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   Menu, Search, Heart, User, ShoppingCart, MapPin, Truck, ShieldCheck,
-  Lightbulb, Gift, Headphones, MessageCircle, Phone, ChevronDown, ChevronRight,
+  Lightbulb, Gift, MessageCircle, Phone, ChevronDown, ChevronRight,
   Sparkles, Trees, Heart as HeartIcon, Flower2, Egg, Sun, Backpack, Leaf, Ghost,
-  Home, Sofa, SprayCan, UtensilsCrossed, PartyPopper, Baby, PaintBucket, PawPrint,
-  MoreHorizontal, Instagram, Facebook, Music2, Bell, ArrowRight,
+  ArrowRight,
 } from "lucide-react";
 import logo from "@/assets/logo-damoreno.png";
 import heroLiving from "@/assets/hero-living-room.jpg";
@@ -15,6 +14,14 @@ import lineaKawaii from "@/assets/linea-kawaii.jpg";
 import lineaProfumazione from "@/assets/linea-profumazione.jpg";
 import lineaBagno from "@/assets/linea-bagno.jpg";
 import lineePets from "@/assets/linee-pets.jpg";
+import catHomeDecor from "@/assets/cat-home-decor.jpg";
+import catCasalinghi from "@/assets/cat-casalinghi.jpg";
+import catParty from "@/assets/cat-party.jpg";
+import catKids from "@/assets/cat-kids.jpg";
+import catCrea from "@/assets/cat-crea.jpg";
+import catAnimali from "@/assets/cat-animali.jpg";
+import catAltre from "@/assets/cat-altre.jpg";
+import ticinoMapAsset from "@/assets/ticino-map.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,18 +53,18 @@ const SEASONS = [
 ];
 
 const MACRO_LARGE = [
-  { label: "HOME DECOR", icon: Home, bg: "from-rose-100 to-rose-200" },
-  { label: "ARREDAMENTO", icon: Sofa, bg: "from-amber-100 to-amber-200" },
-  { label: "PROFUMAZIONE", icon: SprayCan, bg: "from-violet-100 to-violet-200" },
-  { label: "CASALINGHI", icon: UtensilsCrossed, bg: "from-sky-100 to-sky-200" },
+  { label: "HOME DECOR", img: catHomeDecor },
+  { label: "ARREDAMENTO", img: lineaArredamento },
+  { label: "PROFUMAZIONE", img: lineaProfumazione },
+  { label: "CASALINGHI", img: catCasalinghi },
 ];
 
 const MACRO_SMALL = [
-  { label: "PARTY", icon: PartyPopper, bg: "from-pink-100 to-pink-200" },
-  { label: "KIDS", icon: Baby, bg: "from-yellow-100 to-yellow-200" },
-  { label: "PENSA, CREA, REGALA!", icon: PaintBucket, bg: "from-emerald-100 to-emerald-200" },
-  { label: "ANIMALI", icon: PawPrint, bg: "from-orange-100 to-orange-200" },
-  { label: "SCOPRI LE ALTRE", icon: MoreHorizontal, bg: "from-stone-100 to-stone-200" },
+  { label: "PARTY", img: catParty },
+  { label: "KIDS", img: catKids },
+  { label: "PENSA, CREA, REGALA!", img: catCrea },
+  { label: "ANIMALI", img: catAnimali },
+  { label: "SCOPRI LE ALTRE", img: catAltre },
 ];
 
 const LINEE = [
@@ -67,7 +74,14 @@ const LINEE = [
   { label: "Bagno e Benessere", img: lineaBagno },
 ];
 
-const STORES = ["Gravesano", "Bodio", "Sementina", "Muralto", "Sant'Antonino"];
+// Posizioni pinpoint (% relative al riquadro mappa) — 5 punti vendita in Ticino
+const STORES = [
+  { name: "Bodio",        top: "26%", left: "55%" }, // Valle Leventina
+  { name: "Sementina",    top: "47%", left: "62%" }, // pressi Bellinzona
+  { name: "Muralto",      top: "50%", left: "47%" }, // Locarno
+  { name: "Gravesano",    top: "70%", left: "57%" }, // pressi Lugano
+  { name: "Sant'Antonino",top: "49%", left: "60%" }, // tra Bellinzona e Locarno
+];
 
 function HomePage() {
   return (
@@ -78,7 +92,7 @@ function HomePage() {
       <MacroCategories />
       <LineeSection />
       <NovitaPets />
-      <SocialSection />
+      <InfoStrip />
       <StoresSection />
       <Footer />
       <WhatsAppButton />
@@ -93,24 +107,22 @@ function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-white">
-      {/* Top utility bar */}
-      <div className="bg-brand-yellow text-foreground text-xs">
-        <div className="mx-auto max-w-7xl px-4 py-2 flex flex-wrap items-center justify-center md:justify-between gap-x-5 gap-y-1">
-          <div className="hidden md:flex items-center gap-5">
-            <span className="flex items-center gap-1.5"><MapPin className="size-3.5" /> I nostri 5 punti vendita</span>
-            <span className="flex items-center gap-1.5"><Truck className="size-3.5" /> Spedizioni in Svizzera Fr. 4.90 — gratis da 49.90</span>
-            <span className="flex items-center gap-1.5"><Phone className="size-3.5" /> +41 76 580 75 17</span>
-          </div>
+      {/* Top utility bar — BIANCA */}
+      <div className="bg-white border-b border-border text-xs text-foreground/80">
+        <div className="mx-auto max-w-7xl px-4 py-2 flex flex-wrap items-center justify-between gap-x-6 gap-y-1">
+          <span className="flex items-center gap-1.5"><MapPin className="size-3.5 text-brand-red" /> I nostri 5 punti vendita</span>
+          <span className="hidden md:flex items-center gap-1.5"><Truck className="size-3.5 text-brand-red" /> Spedizioni in Svizzera Fr. 4.90 — gratis da 49.90</span>
+          <span className="hidden md:flex items-center gap-1.5"><Phone className="size-3.5 text-brand-red" /> +41 76 580 75 17</span>
           <div className="flex items-center gap-4 font-medium">
-            <a href="#" className="hover:underline">CONTATTI</a>
-            <a href="#" className="hover:underline">Accedi / Registrati</a>
+            <a href="#" className="hover:text-brand-red">CONTATTI</a>
+            <a href="#" className="hover:text-brand-red">Accedi / Registrati</a>
             <span className="flex items-center gap-1">Italiano <ChevronDown className="size-3" /></span>
           </div>
         </div>
       </div>
 
-      {/* Main header */}
-      <div className="border-b border-border">
+      {/* Main header — GIALLA */}
+      <div className="bg-brand-yellow border-b border-brand-yellow-dark/40">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center gap-4">
           <a href="/" className="shrink-0">
             <img src={logo} alt="DA MORENO – dove tutto costa meno" className="h-14 md:h-16 w-auto" />
@@ -121,7 +133,7 @@ function Header() {
               <input
                 type="text"
                 placeholder="Cerca prodotti, categorie, idee..."
-                className="w-full rounded-full border-2 border-brand-yellow bg-white pl-5 pr-14 py-3 text-sm outline-none focus:border-brand-red transition-colors"
+                className="w-full rounded-full border-2 border-white bg-white pl-5 pr-14 py-3 text-sm outline-none focus:border-brand-red transition-colors"
               />
               <button className="absolute right-1 top-1/2 -translate-y-1/2 size-10 rounded-full bg-brand-red text-white grid place-items-center hover:bg-brand-red-dark transition-colors" aria-label="Cerca">
                 <Search className="size-5" />
@@ -141,24 +153,7 @@ function Header() {
         </div>
       </div>
 
-      {/* Info pills */}
-      <div className="border-b border-border bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-3 grid grid-cols-2 md:grid-cols-5 gap-3 text-xs">
-          <InfoPill icon={Truck} title="SPEDIZIONE VELOCE" sub="Gratuita sopra Fr. 49.90" />
-          <InfoPill icon={ShieldCheck} title="PAGAMENTI SICURI" sub="100% protetti" />
-          <InfoPill icon={Lightbulb} title="ISPIRAZIONE QUOTIDIANA" sub="Idee per ogni momento" />
-          <InfoPill icon={Gift} title="RESO FACILE" sub="Semplice, senza pensieri" />
-          <a href="#" className="hidden md:flex items-center gap-2 rounded-xl bg-whatsapp text-white px-3 py-2 hover:opacity-90 transition">
-            <Headphones className="size-5 shrink-0" />
-            <div className="leading-tight">
-              <div className="text-[10px] opacity-90">ASSISTENZA CLIENTI</div>
-              <div className="font-semibold">Chatta con noi</div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      {/* Nav bar with hamburger */}
+      {/* Nav bar with hamburger + Chatta con noi a destra */}
       <div className="bg-brand-red text-white">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center gap-6">
           <button
@@ -171,6 +166,14 @@ function Header() {
           </button>
           <a href="#" className="text-sm font-semibold tracking-wide hover:opacity-90">SHOP ONLINE</a>
           <a href="#stores" className="text-sm font-semibold tracking-wide hover:opacity-90">I NOSTRI NEGOZI</a>
+
+          <a
+            href="#"
+            className="ml-auto inline-flex items-center gap-2 rounded-full bg-whatsapp text-white px-4 py-2 text-sm font-semibold hover:opacity-90 transition"
+          >
+            <MessageCircle className="size-4" />
+            <span className="hidden sm:inline">Chatta con noi</span>
+          </a>
         </div>
       </div>
 
@@ -185,18 +188,6 @@ function IconLink({ icon: Icon, label }: { icon: React.ComponentType<{ className
       <Icon className="size-5" />
       <span className="text-[10px] font-medium">{label}</span>
     </button>
-  );
-}
-
-function InfoPill({ icon: Icon, title, sub }: { icon: React.ComponentType<{ className?: string }>; title: string; sub: string }) {
-  return (
-    <div className="flex items-center gap-2 rounded-xl bg-accent/60 px-3 py-2">
-      <Icon className="size-5 text-brand-red shrink-0" />
-      <div className="leading-tight">
-        <div className="font-semibold text-[10px] md:text-xs">{title}</div>
-        <div className="text-muted-foreground text-[10px] md:text-[11px]">{sub}</div>
-      </div>
-    </div>
   );
 }
 
@@ -313,19 +304,19 @@ function SeasonalBanner() {
   );
 }
 
-/* ────────────────────── MACRO CATEGORIES ────────────────────── */
+/* ────────────────────── MACRO CATEGORIES (4 + 4 con immagini) ────────────────────── */
 
 function MacroCategories() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-10">
       <div className="grid grid-cols-4 gap-4 md:gap-8 justify-items-center mb-8">
-        {MACRO_LARGE.map(({ label, icon: Icon, bg }) => (
-          <CircleCategory key={label} label={label} Icon={Icon} bg={bg} size="lg" />
+        {MACRO_LARGE.map(({ label, img }) => (
+          <CircleCategory key={label} label={label} img={img} size="lg" />
         ))}
       </div>
-      <div className="grid grid-cols-5 gap-3 md:gap-6 justify-items-center">
-        {MACRO_SMALL.map(({ label, icon: Icon, bg }) => (
-          <CircleCategory key={label} label={label} Icon={Icon} bg={bg} size="sm" />
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 justify-items-center">
+        {MACRO_SMALL.slice(0, 4).map(({ label, img }) => (
+          <CircleCategory key={label} label={label} img={img} size="sm" />
         ))}
       </div>
     </section>
@@ -333,20 +324,19 @@ function MacroCategories() {
 }
 
 function CircleCategory({
-  label, Icon, bg, size,
+  label, img, size,
 }: {
   label: string;
-  Icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
-  bg: string;
+  img: string;
   size: "lg" | "sm";
 }) {
-  const dim = size === "lg" ? "size-24 md:size-36" : "size-20 md:size-28";
+  const dim = size === "lg" ? "size-28 md:size-40" : "size-24 md:size-32";
   return (
     <a href="#" className="group flex flex-col items-center gap-2 md:gap-3 text-center">
-      <div className={`${dim} rounded-full bg-gradient-to-br ${bg} grid place-items-center brand-shadow group-hover:scale-105 transition-transform`}>
-        <Icon className={size === "lg" ? "size-12 md:size-16" : "size-9 md:size-12"} strokeWidth={1.4} />
+      <div className={`${dim} rounded-full overflow-hidden brand-shadow ring-4 ring-white group-hover:scale-105 transition-transform`}>
+        <img src={img} alt={label} loading="lazy" className="w-full h-full object-cover" width={400} height={400} />
       </div>
-      <span className="text-[11px] md:text-sm font-semibold tracking-wide text-foreground/80 group-hover:text-brand-red transition-colors max-w-[110px]">{label}</span>
+      <span className="text-[11px] md:text-sm font-semibold tracking-wide text-foreground/80 group-hover:text-brand-red transition-colors max-w-[130px]">{label}</span>
     </a>
   );
 }
@@ -398,68 +388,86 @@ function NovitaPets() {
   );
 }
 
-/* ────────────────────── SOCIAL ────────────────────── */
+/* ───────── INFO STRIP (ex-pills, spostata in basso) ───────── */
 
-function SocialSection() {
-  const posts = [
-    "from-rose-200 to-amber-200",
-    "from-sky-200 to-violet-200",
-    "from-emerald-200 to-yellow-200",
-  ];
+function InfoStrip() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-10">
-      <h2 className="text-center text-2xl md:text-3xl font-bold mb-2">Seguici sui social e vieni a trovarci</h2>
-      <p className="text-center text-muted-foreground mb-8">Le ultime ispirazioni direttamente dai nostri canali.</p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        {posts.map((g, i) => (
-          <a key={i} href="#" className={`aspect-square rounded-2xl bg-gradient-to-br ${g} grid place-items-center brand-shadow hover:scale-[1.02] transition-transform`}>
-            <Instagram className="size-12 text-white/80" strokeWidth={1.4} />
-          </a>
-        ))}
-      </div>
-      <div className="flex items-center justify-center gap-4">
-        <SocialIcon icon={Instagram} />
-        <SocialIcon icon={Music2} label="TikTok" />
-        <SocialIcon icon={Facebook} />
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+        <InfoPill icon={Truck} title="SPEDIZIONE VELOCE" sub="Gratuita sopra Fr. 49.90" />
+        <InfoPill icon={ShieldCheck} title="PAGAMENTI SICURI" sub="100% protetti" />
+        <InfoPill icon={Lightbulb} title="ISPIRAZIONE QUOTIDIANA" sub="Idee per ogni momento" />
+        <InfoPill icon={Gift} title="RESO FACILE" sub="Semplice, senza pensieri" />
       </div>
     </section>
   );
 }
 
-function SocialIcon({ icon: Icon, label }: { icon: React.ComponentType<{ className?: string }>; label?: string }) {
+function InfoPill({ icon: Icon, title, sub }: { icon: React.ComponentType<{ className?: string }>; title: string; sub: string }) {
   return (
-    <a href="#" aria-label={label ?? "social"} className="size-12 rounded-full bg-foreground text-white grid place-items-center hover:bg-brand-red transition-colors">
-      <Icon className="size-5" />
-    </a>
+    <div className="flex items-center gap-3 rounded-xl bg-accent/60 px-4 py-4">
+      <Icon className="size-6 text-brand-red shrink-0" />
+      <div className="leading-tight">
+        <div className="font-semibold text-xs md:text-sm">{title}</div>
+        <div className="text-muted-foreground text-[11px] md:text-xs">{sub}</div>
+      </div>
+    </div>
   );
 }
 
-/* ────────────────────── STORES ────────────────────── */
+/* ────────────────────── STORES with map ────────────────────── */
 
 function StoresSection() {
   return (
     <section id="stores" className="bg-accent/50 py-10">
       <div className="mx-auto max-w-7xl px-4">
         <div className="rounded-2xl bg-white p-6 md:p-8 brand-shadow">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+          <div className="grid md:grid-cols-[1fr_1.2fr] gap-8 items-center">
+            {/* Lista negozi */}
             <div>
               <h2 className="text-2xl md:text-3xl font-bold">I nostri negozi in Ticino</h2>
-              <p className="text-muted-foreground mt-1">Vieni a trovarci nei nostri 5 punti vendita.</p>
+              <p className="text-muted-foreground mt-1 mb-5">Vieni a trovarci nei nostri 5 punti vendita.</p>
+              <ul className="space-y-2 mb-6">
+                {STORES.map((s) => (
+                  <li key={s.name}>
+                    <a href="#" className="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-accent/40 transition-colors">
+                      <span className="grid place-items-center size-8 rounded-full bg-brand-red text-white">
+                        <MapPin className="size-4" />
+                      </span>
+                      <span className="font-semibold">{s.name}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <a href="#" className="inline-flex items-center gap-2 rounded-full bg-brand-red text-white px-5 py-3 font-semibold hover:bg-brand-red-dark transition-colors">
+                SCOPRI TUTTI I NEGOZI <ArrowRight className="size-4" />
+              </a>
             </div>
-            <a href="#" className="inline-flex items-center gap-2 rounded-full bg-brand-yellow text-foreground px-5 py-3 font-semibold hover:bg-brand-yellow-dark transition-colors w-fit">
-              SCOPRI TUTTI I NEGOZI <ArrowRight className="size-4" />
-            </a>
+
+            {/* Mappa Ticino con pinpoint */}
+            <div className="relative rounded-2xl overflow-hidden bg-accent/30">
+              <img
+                src={ticinoMapAsset.url}
+                alt="Mappa del Canton Ticino con i 5 punti vendita DA MORENO"
+                className="w-full h-auto block"
+                loading="lazy"
+              />
+              {STORES.map((s) => (
+                <div
+                  key={s.name}
+                  className="absolute -translate-x-1/2 -translate-y-full group"
+                  style={{ top: s.top, left: s.left }}
+                >
+                  <div className="relative flex flex-col items-center">
+                    <span className="px-2 py-0.5 mb-1 rounded-md bg-white shadow text-[10px] font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                      {s.name}
+                    </span>
+                    <MapPin className="size-7 text-brand-red drop-shadow-md fill-brand-red" strokeWidth={2} />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <ul className="grid grid-cols-2 md:grid-cols-5 gap-3">
-            {STORES.map((s) => (
-              <li key={s}>
-                <a href="#" className="flex items-center gap-2 rounded-xl border border-border px-4 py-3 hover:border-brand-red hover:bg-accent/40 transition-colors">
-                  <MapPin className="size-4 text-brand-red" />
-                  <span className="font-semibold">{s}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>
@@ -519,13 +527,9 @@ function WhatsAppButton() {
     <a
       href="#"
       aria-label="Contattaci su WhatsApp"
-      className="fixed bottom-6 right-6 z-30 flex items-center gap-3 rounded-full bg-whatsapp text-white pl-4 pr-5 py-3 font-semibold shadow-2xl hover:scale-105 transition-transform"
+      className="fixed bottom-6 right-6 z-30 grid place-items-center size-14 rounded-full bg-whatsapp text-white shadow-2xl hover:scale-105 transition-transform"
     >
-      <span className="grid place-items-center size-9 rounded-full bg-white/15">
-        <MessageCircle className="size-5" />
-      </span>
-      <span className="hidden sm:inline">Chatta con noi</span>
-      <Bell className="size-4 absolute -top-1 -right-1 hidden" />
+      <MessageCircle className="size-6" />
     </a>
   );
 }
