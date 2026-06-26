@@ -19,7 +19,7 @@ import catCasalinghi from "@/assets/cat-casalinghi.jpg";
 import catParty from "@/assets/cat-party.jpg";
 import catKids from "@/assets/cat-kids.jpg";
 import catCrea from "@/assets/cat-crea.jpg";
-import catAnimali from "@/assets/cat-animali.jpg";
+// catAnimali rimosso dalla home (presente in categorie/drawer)
 import catAltre from "@/assets/cat-altre.jpg";
 
 
