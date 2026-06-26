@@ -50,21 +50,26 @@ function NegoziPage() {
       <Header />
 
       {/* HERO */}
-      <section className="relative">
-        <div className="grid md:grid-cols-[1fr_1.2fr]">
-          <div className="px-4 md:px-10 pt-6 md:pt-10 pb-8 md:pb-12 max-w-3xl">
-            <nav className="text-xs text-muted-foreground mb-3">
-              <a href="/" className="hover:text-brand-red">Home</a>
-              <span className="mx-2">›</span>
-              <span className="text-foreground/70">I nostri negozi</span>
+      <section className="relative overflow-hidden bg-background h-[260px] md:h-[300px] lg:h-[320px]">
+        <img
+          src={heroNegozi}
+          alt="Interno negozio DA MORENO"
+          className="absolute inset-y-0 right-0 h-full w-full md:w-[62%] object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 via-[45%] to-background/0 md:to-background/5" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/0 to-background md:to-background/70" />
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 h-full flex items-center">
+          <div className="max-w-2xl pt-1 md:pt-0">
+            <nav className="text-xs text-muted-foreground mb-5 md:mb-6">
+              <a href="/" className="font-semibold text-foreground hover:text-brand-red">Home</a>
+              <span className="mx-2 text-muted-foreground/70">›</span>
+              <span>I nostri negozi</span>
             </nav>
-            <h1 className="text-3xl md:text-5xl font-bold leading-tight">I nostri punti vendita</h1>
-            <p className="mt-3 text-muted-foreground md:text-lg">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05]">I nostri punti vendita</h1>
+            <p className="mt-4 text-base md:text-xl text-foreground/80 max-w-xl">
               5 negozi in Ticino dove trovare tutto per la casa, ogni giorno.
             </p>
-          </div>
-          <div className="h-48 md:h-auto md:min-h-[280px] overflow-hidden">
-            <img src={heroNegozi} alt="Interno negozio DA MORENO" className="w-full h-full object-cover" />
           </div>
         </div>
       </section>
