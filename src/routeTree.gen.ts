@@ -16,6 +16,7 @@ import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CarrelloRouteImport } from './routes/carrello'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProdottoSlugRouteImport } from './routes/prodotto.$slug'
+import { Route as CategoriaSlugRouteImport } from './routes/categoria.$slug'
 
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
@@ -52,6 +53,11 @@ const ProdottoSlugRoute = ProdottoSlugRouteImport.update({
   path: '/prodotto/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CategoriaSlugRoute = CategoriaSlugRouteImport.update({
+  id: '/categoria/$slug',
+  path: '/categoria/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/negozi': typeof NegoziRoute
   '/ordine-confermato': typeof OrdineConfermatoRoute
   '/shop': typeof ShopRoute
+  '/categoria/$slug': typeof CategoriaSlugRoute
   '/prodotto/$slug': typeof ProdottoSlugRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/negozi': typeof NegoziRoute
   '/ordine-confermato': typeof OrdineConfermatoRoute
   '/shop': typeof ShopRoute
+  '/categoria/$slug': typeof CategoriaSlugRoute
   '/prodotto/$slug': typeof ProdottoSlugRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/negozi': typeof NegoziRoute
   '/ordine-confermato': typeof OrdineConfermatoRoute
   '/shop': typeof ShopRoute
+  '/categoria/$slug': typeof CategoriaSlugRoute
   '/prodotto/$slug': typeof ProdottoSlugRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/negozi'
     | '/ordine-confermato'
     | '/shop'
+    | '/categoria/$slug'
     | '/prodotto/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/negozi'
     | '/ordine-confermato'
     | '/shop'
+    | '/categoria/$slug'
     | '/prodotto/$slug'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/negozi'
     | '/ordine-confermato'
     | '/shop'
+    | '/categoria/$slug'
     | '/prodotto/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   NegoziRoute: typeof NegoziRoute
   OrdineConfermatoRoute: typeof OrdineConfermatoRoute
   ShopRoute: typeof ShopRoute
+  CategoriaSlugRoute: typeof CategoriaSlugRoute
   ProdottoSlugRoute: typeof ProdottoSlugRoute
 }
 
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProdottoSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/categoria/$slug': {
+      id: '/categoria/$slug'
+      path: '/categoria/$slug'
+      fullPath: '/categoria/$slug'
+      preLoaderRoute: typeof CategoriaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -182,18 +202,9 @@ const rootRouteChildren: RootRouteChildren = {
   NegoziRoute: NegoziRoute,
   OrdineConfermatoRoute: OrdineConfermatoRoute,
   ShopRoute: ShopRoute,
+  CategoriaSlugRoute: CategoriaSlugRoute,
   ProdottoSlugRoute: ProdottoSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
