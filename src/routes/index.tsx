@@ -601,7 +601,10 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-white/60">
           <span>© {new Date().getFullYear()} DA MORENO SA — Tutti i diritti riservati.</span>
-          <span>Confezionato con cura, prezzato con amore e impacchettato in fiocchi gialli da Red Icon SA</span>
+          <div className="flex items-center gap-4">
+            <a href="/connect" className="hover:text-white transition-colors">Collega il tuo assistente AI</a>
+            <span>Confezionato con cura, prezzato con amore e impacchettato in fiocchi gialli da Red Icon SA</span>
+          </div>
         </div>
       </div>
     </footer>
