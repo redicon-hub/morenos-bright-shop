@@ -13,6 +13,7 @@ import { Route as ShopRouteImport } from './routes/shop'
 import { Route as OrdineConfermatoRouteImport } from './routes/ordine-confermato'
 import { Route as NegoziRouteImport } from './routes/negozi'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as ConnectRouteImport } from './routes/connect'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CarrelloRouteImport } from './routes/carrello'
 import { Route as IndexRouteImport } from './routes/index'
@@ -40,6 +41,11 @@ const NegoziRoute = NegoziRouteImport.update({
 const McpRoute = McpRouteImport.update({
   id: '/mcp',
   path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConnectRoute = ConnectRouteImport.update({
+  id: '/connect',
+  path: '/connect',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutRoute = CheckoutRouteImport.update({
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/carrello': typeof CarrelloRoute
   '/checkout': typeof CheckoutRoute
+  '/connect': typeof ConnectRoute
   '/mcp': typeof McpRoute
   '/negozi': typeof NegoziRoute
   '/ordine-confermato': typeof OrdineConfermatoRoute
@@ -104,6 +111,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/carrello': typeof CarrelloRoute
   '/checkout': typeof CheckoutRoute
+  '/connect': typeof ConnectRoute
   '/mcp': typeof McpRoute
   '/negozi': typeof NegoziRoute
   '/ordine-confermato': typeof OrdineConfermatoRoute
@@ -119,6 +127,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/carrello': typeof CarrelloRoute
   '/checkout': typeof CheckoutRoute
+  '/connect': typeof ConnectRoute
   '/mcp': typeof McpRoute
   '/negozi': typeof NegoziRoute
   '/ordine-confermato': typeof OrdineConfermatoRoute
@@ -135,6 +144,7 @@ export interface FileRouteTypes {
     | '/'
     | '/carrello'
     | '/checkout'
+    | '/connect'
     | '/mcp'
     | '/negozi'
     | '/ordine-confermato'
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
     | '/'
     | '/carrello'
     | '/checkout'
+    | '/connect'
     | '/mcp'
     | '/negozi'
     | '/ordine-confermato'
@@ -163,6 +174,7 @@ export interface FileRouteTypes {
     | '/'
     | '/carrello'
     | '/checkout'
+    | '/connect'
     | '/mcp'
     | '/negozi'
     | '/ordine-confermato'
@@ -178,6 +190,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CarrelloRoute: typeof CarrelloRoute
   CheckoutRoute: typeof CheckoutRoute
+  ConnectRoute: typeof ConnectRoute
   McpRoute: typeof McpRoute
   NegoziRoute: typeof NegoziRoute
   OrdineConfermatoRoute: typeof OrdineConfermatoRoute
@@ -217,6 +230,13 @@ declare module '@tanstack/react-router' {
       path: '/mcp'
       fullPath: '/mcp'
       preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/connect': {
+      id: '/connect'
+      path: '/connect'
+      fullPath: '/connect'
+      preLoaderRoute: typeof ConnectRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout': {
@@ -282,6 +302,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CarrelloRoute: CarrelloRoute,
   CheckoutRoute: CheckoutRoute,
+  ConnectRoute: ConnectRoute,
   McpRoute: McpRoute,
   NegoziRoute: NegoziRoute,
   OrdineConfermatoRoute: OrdineConfermatoRoute,
