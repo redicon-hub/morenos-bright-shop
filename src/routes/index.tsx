@@ -185,8 +185,14 @@ export function Header() {
           </div>
 
           <div className="flex items-center gap-1 md:gap-2">
-            <IconLink icon={Heart} label="Preferiti" />
-            <IconLink icon={User} label="Account" />
+            <Link to="/account" className="hidden md:flex flex-col items-center gap-0.5 px-3 py-1 text-foreground hover:text-brand-red transition-colors">
+              <Heart className="size-5" />
+              <span className="text-[10px] font-medium">Preferiti</span>
+            </Link>
+            <Link to="/account" className="hidden md:flex flex-col items-center gap-0.5 px-3 py-1 text-foreground hover:text-brand-red transition-colors">
+              <User className="size-5" />
+              <span className="text-[10px] font-medium">Account</span>
+            </Link>
             <Link to="/carrello" className="flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-3 md:px-4 py-2.5 hover:bg-brand-red-dark transition-colors">
               <ShoppingCart className="size-5" />
               <span className="hidden md:inline text-sm font-semibold">{formatCHF(subtotal)}</span>
