@@ -40,24 +40,82 @@ let hydrated = false;
 const DEMO_ORDERS: Order[] = [
   {
     id: "DM-2026-0142",
-    date: "2026-06-28",
+    date: "2026-05-14",
     status: "delivered",
-    total: 87.6,
+    total: 62.7,
     items: [
-      { slug: "cuscino-boucle-panna", name: "Cuscino bouclé panna", image: "", qty: 2, price: 24.9 },
-      { slug: "candela-vaniglia", name: "Candela profumata vaniglia", image: "", qty: 1, price: 12.9 },
+      { slug: "vaso-decorativo-ceramica", name: "Vaso decorativo in ceramica opaca", image: "", qty: 2, price: 14.9 },
+      { slug: "candela-profumata-vaniglia", name: "Candela profumata vetro — Vaniglia", image: "", qty: 4, price: 7.9 },
     ],
   },
   {
     id: "DM-2026-0198",
-    date: "2026-07-02",
-    status: "shipped",
-    total: 42.5,
+    date: "2026-06-02",
+    status: "delivered",
+    total: 128.9,
     items: [
-      { slug: "set-asciugamani-cotone", name: "Set asciugamani cotone", image: "", qty: 1, price: 39.9 },
+      { slug: "set-pentole-antiaderente-5pz", name: "Set pentole antiaderenti 5 pezzi", image: "", qty: 1, price: 79.0 },
+      { slug: "set-piatti-porcellana-12pz", name: "Set piatti porcellana 12 pezzi", image: "", qty: 1, price: 49.9 },
+    ],
+  },
+  {
+    id: "DM-2026-0231",
+    date: "2026-06-24",
+    status: "shipped",
+    total: 51.8,
+    items: [
+      { slug: "set-asciugamani-cotone-3pz", name: "Set asciugamani in cotone 3 pezzi", image: "", qty: 1, price: 19.9 },
+      { slug: "tappeto-bagno-microfibra", name: "Tappeto bagno in microfibra", image: "", qty: 1, price: 11.9 },
+      { slug: "diffusore-bastoncini-fico", name: "Diffusore a bastoncini — Fico & Cedro", image: "", qty: 1, price: 12.5 },
+    ],
+  },
+  {
+    id: "DM-2026-0264",
+    date: "2026-07-05",
+    status: "processing",
+    total: 39.9,
+    items: [
+      { slug: "lampada-da-tavolo-rattan", name: "Lampada da tavolo in rattan naturale", image: "", qty: 1, price: 39.9 },
+    ],
+  },
+  {
+    id: "DM-2026-0119",
+    date: "2026-04-30",
+    status: "cancelled",
+    total: 9.9,
+    items: [
+      { slug: "kit-festa-compleanno-rosso", name: "Kit festa compleanno — tema rosso", image: "", qty: 1, price: 9.9 },
     ],
   },
 ];
+
+const DEMO_ADDRESSES: Address[] = [
+  {
+    id: "a_demo_1",
+    label: "Casa",
+    firstName: "Giulia",
+    lastName: "Rossi",
+    street: "Via Nassa 22",
+    zip: "6900",
+    city: "Lugano",
+    country: "Svizzera",
+    phone: "+41 79 123 45 67",
+    isDefault: true,
+  },
+  {
+    id: "a_demo_2",
+    label: "Ufficio",
+    firstName: "Giulia",
+    lastName: "Rossi",
+    street: "Piazza della Riforma 5",
+    zip: "6900",
+    city: "Lugano",
+    country: "Svizzera",
+    phone: "+41 91 987 65 43",
+  },
+];
+
+const DEMO_WISHLIST = ["lampada-da-tavolo-rattan", "cuscino-decorativo-velluto", "ghirlanda-autunno-foglie"];
 
 function load(): Account | null {
   if (typeof window === "undefined") return null;
