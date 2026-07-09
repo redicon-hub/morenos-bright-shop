@@ -166,7 +166,7 @@ function subscribe(cb: () => void) {
 export function useAccount() {
   const account = useSyncExternalStore(subscribe, read, readSSR);
 
-  const login = useCallback((email: string, firstName = "Cliente", lastName = "Da Moreno") => {
+  const login = useCallback((email: string, firstName = "Giulia", lastName = "Rossi") => {
     const existing = load();
     if (existing && existing.email === email) { write(existing); return; }
     write({
@@ -174,8 +174,8 @@ export function useAccount() {
       firstName,
       lastName,
       createdAt: new Date().toISOString(),
-      addresses: [],
-      wishlist: [],
+      addresses: DEMO_ADDRESSES,
+      wishlist: DEMO_WISHLIST,
     });
   }, []);
 
