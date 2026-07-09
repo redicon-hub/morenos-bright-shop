@@ -172,7 +172,7 @@ function AuthPanels() {
           </button>
 
           <p className="text-[11px] text-muted-foreground text-center pt-2">
-            Demo — nessun dato viene inviato. In produzione l'autenticazione userà WooCommerce.
+            Demo — credenziali precompilate: <b>giulia.rossi@example.ch</b> / <b>demo1234</b>. In produzione l'autenticazione userà WooCommerce.
           </p>
         </form>
       </div>
