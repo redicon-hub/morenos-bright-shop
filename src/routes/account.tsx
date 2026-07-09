@@ -104,7 +104,7 @@ function SideItem({
 function AuthPanels() {
   const [mode, setMode] = useState<"login" | "register">("login");
   const { login, register } = useAccount();
-  const [form, setForm] = useState({ email: "", password: "", firstName: "", lastName: "" });
+  const [form, setForm] = useState({ email: "giulia.rossi@example.ch", password: "demo1234", firstName: "Giulia", lastName: "Rossi" });
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
