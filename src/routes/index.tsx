@@ -185,8 +185,14 @@ export function Header() {
           </div>
 
           <div className="flex items-center gap-1 md:gap-2">
-            <IconLink icon={Heart} label="Preferiti" />
-            <IconLink icon={User} label="Account" />
+            <Link to="/account" className="hidden md:flex flex-col items-center gap-0.5 px-3 py-1 text-foreground hover:text-brand-red transition-colors">
+              <Heart className="size-5" />
+              <span className="text-[10px] font-medium">Preferiti</span>
+            </Link>
+            <Link to="/account" className="hidden md:flex flex-col items-center gap-0.5 px-3 py-1 text-foreground hover:text-brand-red transition-colors">
+              <User className="size-5" />
+              <span className="text-[10px] font-medium">Account</span>
+            </Link>
             <Link to="/carrello" className="flex items-center gap-2 rounded-[10px] bg-brand-red text-white px-3 md:px-4 py-2.5 hover:bg-brand-red-dark transition-colors">
               <ShoppingCart className="size-5" />
               <span className="hidden md:inline text-sm font-semibold">{formatCHF(subtotal)}</span>
@@ -644,10 +650,10 @@ export function MobileTabBar() {
   const [active, setActive] = useState("home");
   const tabs = [
     { id: "home", label: "Home", icon: Home, href: "/" },
-    { id: "cat", label: "Categorie", icon: LayoutGrid, href: "#" },
-    { id: "search", label: "Cerca", icon: Search, href: "#", center: true },
-    { id: "fav", label: "Preferiti", icon: Heart, href: "#" },
-    { id: "acc", label: "Account", icon: User, href: "#" },
+    { id: "cat", label: "Categorie", icon: LayoutGrid, href: "/shop" },
+    { id: "search", label: "Cerca", icon: Search, href: "/shop", center: true },
+    { id: "fav", label: "Preferiti", icon: Heart, href: "/account" },
+    { id: "acc", label: "Account", icon: User, href: "/account" },
   ];
   return (
     <nav
@@ -662,7 +668,8 @@ export function MobileTabBar() {
           if (t.center) {
             return (
               <li key={t.id} className="relative">
-                <button
+                <Link
+                  to={t.href}
                   onClick={() => setActive(t.id)}
                   className="w-full h-16 flex flex-col items-center justify-end pb-1.5"
                 >
@@ -670,13 +677,14 @@ export function MobileTabBar() {
                     <Icon className="size-5" />
                   </span>
                   <span className="mt-1 text-[10px] font-semibold text-foreground/70">{t.label}</span>
-                </button>
+                </Link>
               </li>
             );
           }
           return (
             <li key={t.id}>
-              <button
+              <Link
+                to={t.href}
                 onClick={() => setActive(t.id)}
                 className={`w-full h-16 flex flex-col items-center justify-center gap-1 transition-colors ${
                   isActive ? "text-brand-red" : "text-foreground/60"
@@ -684,7 +692,7 @@ export function MobileTabBar() {
               >
                 <Icon className="size-5" strokeWidth={isActive ? 2.5 : 2} />
                 <span className="text-[10px] font-semibold">{t.label}</span>
-              </button>
+              </Link>
             </li>
           );
         })}
