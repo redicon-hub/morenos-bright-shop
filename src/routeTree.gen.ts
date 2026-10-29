@@ -14,10 +14,15 @@ import { Route as AccountRouteImport } from './routes/account'
 import { Route as CarrelloRouteImport } from './routes/carrello'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ConnectRouteImport } from './routes/connect'
+import { Route as ContattiRouteImport } from './routes/contatti'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as NegoziRouteImport } from './routes/negozi'
 import { Route as OrdineConfermatoRouteImport } from './routes/ordine-confermato'
+import { Route as PagamentiRouteImport } from './routes/pagamenti'
+import { Route as ResiRouteImport } from './routes/resi'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as SpedizioniRouteImport } from './routes/spedizioni'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
 import { Route as CategoriaSlugRouteImport } from './routes/categoria.$slug'
@@ -49,6 +54,16 @@ const ConnectRoute = ConnectRouteImport.update({
   path: '/connect',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContattiRoute = ContattiRouteImport.update({
+  id: '/contatti',
+  path: '/contatti',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const McpRoute = McpRouteImport.update({
   id: '/mcp',
   path: '/mcp',
@@ -64,9 +79,24 @@ const OrdineConfermatoRoute = OrdineConfermatoRouteImport.update({
   path: '/ordine-confermato',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PagamentiRoute = PagamentiRouteImport.update({
+  id: '/pagamenti',
+  path: '/pagamenti',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResiRoute = ResiRouteImport.update({
+  id: '/resi',
+  path: '/resi',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
   path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpedizioniRoute = SpedizioniRouteImport.update({
+  id: '/spedizioni',
+  path: '/spedizioni',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Char91DotmcpChar93ListToolsRoute =
@@ -104,10 +134,15 @@ export interface FileRoutesByFullPath {
   '/carrello': typeof CarrelloRoute
   '/checkout': typeof CheckoutRoute
   '/connect': typeof ConnectRoute
+  '/contatti': typeof ContattiRoute
+  '/faq': typeof FaqRoute
   '/mcp': typeof McpRoute
   '/negozi': typeof NegoziRoute
   '/ordine-confermato': typeof OrdineConfermatoRoute
+  '/pagamenti': typeof PagamentiRoute
+  '/resi': typeof ResiRoute
   '/shop': typeof ShopRoute
+  '/spedizioni': typeof SpedizioniRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
@@ -120,10 +155,15 @@ export interface FileRoutesByTo {
   '/carrello': typeof CarrelloRoute
   '/checkout': typeof CheckoutRoute
   '/connect': typeof ConnectRoute
+  '/contatti': typeof ContattiRoute
+  '/faq': typeof FaqRoute
   '/mcp': typeof McpRoute
   '/negozi': typeof NegoziRoute
   '/ordine-confermato': typeof OrdineConfermatoRoute
+  '/pagamenti': typeof PagamentiRoute
+  '/resi': typeof ResiRoute
   '/shop': typeof ShopRoute
+  '/spedizioni': typeof SpedizioniRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
@@ -137,10 +177,15 @@ export interface FileRoutesById {
   '/carrello': typeof CarrelloRoute
   '/checkout': typeof CheckoutRoute
   '/connect': typeof ConnectRoute
+  '/contatti': typeof ContattiRoute
+  '/faq': typeof FaqRoute
   '/mcp': typeof McpRoute
   '/negozi': typeof NegoziRoute
   '/ordine-confermato': typeof OrdineConfermatoRoute
+  '/pagamenti': typeof PagamentiRoute
+  '/resi': typeof ResiRoute
   '/shop': typeof ShopRoute
+  '/spedizioni': typeof SpedizioniRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
@@ -155,10 +200,15 @@ export interface FileRouteTypes {
     | '/carrello'
     | '/checkout'
     | '/connect'
+    | '/contatti'
+    | '/faq'
     | '/mcp'
     | '/negozi'
     | '/ordine-confermato'
+    | '/pagamenti'
+    | '/resi'
     | '/shop'
+    | '/spedizioni'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/categoria/$slug'
@@ -171,10 +221,15 @@ export interface FileRouteTypes {
     | '/carrello'
     | '/checkout'
     | '/connect'
+    | '/contatti'
+    | '/faq'
     | '/mcp'
     | '/negozi'
     | '/ordine-confermato'
+    | '/pagamenti'
+    | '/resi'
     | '/shop'
+    | '/spedizioni'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/categoria/$slug'
@@ -187,10 +242,15 @@ export interface FileRouteTypes {
     | '/carrello'
     | '/checkout'
     | '/connect'
+    | '/contatti'
+    | '/faq'
     | '/mcp'
     | '/negozi'
     | '/ordine-confermato'
+    | '/pagamenti'
+    | '/resi'
     | '/shop'
+    | '/spedizioni'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/categoria/$slug'
@@ -204,10 +264,15 @@ export interface RootRouteChildren {
   CarrelloRoute: typeof CarrelloRoute
   CheckoutRoute: typeof CheckoutRoute
   ConnectRoute: typeof ConnectRoute
+  ContattiRoute: typeof ContattiRoute
+  FaqRoute: typeof FaqRoute
   McpRoute: typeof McpRoute
   NegoziRoute: typeof NegoziRoute
   OrdineConfermatoRoute: typeof OrdineConfermatoRoute
+  PagamentiRoute: typeof PagamentiRoute
+  ResiRoute: typeof ResiRoute
   ShopRoute: typeof ShopRoute
+  SpedizioniRoute: typeof SpedizioniRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   CategoriaSlugRoute: typeof CategoriaSlugRoute
@@ -252,6 +317,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConnectRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contatti': {
+      id: '/contatti'
+      path: '/contatti'
+      fullPath: '/contatti'
+      preLoaderRoute: typeof ContattiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mcp': {
       id: '/mcp'
       path: '/mcp'
@@ -273,11 +352,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrdineConfermatoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pagamenti': {
+      id: '/pagamenti'
+      path: '/pagamenti'
+      fullPath: '/pagamenti'
+      preLoaderRoute: typeof PagamentiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resi': {
+      id: '/resi'
+      path: '/resi'
+      fullPath: '/resi'
+      preLoaderRoute: typeof ResiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shop': {
       id: '/shop'
       path: '/shop'
       fullPath: '/shop'
       preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/spedizioni': {
+      id: '/spedizioni'
+      path: '/spedizioni'
+      fullPath: '/spedizioni'
+      preLoaderRoute: typeof SpedizioniRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/.mcp/list-tools': {
@@ -324,10 +424,15 @@ const rootRouteChildren: RootRouteChildren = {
   CarrelloRoute: CarrelloRoute,
   CheckoutRoute: CheckoutRoute,
   ConnectRoute: ConnectRoute,
+  ContattiRoute: ContattiRoute,
+  FaqRoute: FaqRoute,
   McpRoute: McpRoute,
   NegoziRoute: NegoziRoute,
   OrdineConfermatoRoute: OrdineConfermatoRoute,
+  PagamentiRoute: PagamentiRoute,
+  ResiRoute: ResiRoute,
   ShopRoute: ShopRoute,
+  SpedizioniRoute: SpedizioniRoute,
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
