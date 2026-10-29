@@ -1,4 +1,5 @@
-# Language selector
-- [ ] Add Italian, German and French selection on desktop and mobile.
-- [ ] Translate storefront text while preserving the mock shopping flow.
-- [ ] Verify language switching, navigation and retained selection.
+# Roadmap
+
+- [ ] Fix typecheck errors in __root.tsx and prodotto.$slug.tsx (introduced by security package update)
+- [ ] Create pages: Contatti, Spedizioni, Resi, Pagamenti, FAQ
+- [ ] Link the 5 new pages from the footer
