@@ -21,7 +21,7 @@ export const Route = createFileRoute("/prodotto/$slug")({
       ],
     };
   },
-  loader: ({ params }) => {
+  loader: ({ params }): { product: NonNullable<ReturnType<typeof getProductBySlug>> } => {
     const product = getProductBySlug(params.slug);
     if (!product) throw notFound();
     return { product };
