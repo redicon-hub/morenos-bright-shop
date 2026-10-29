@@ -26,7 +26,7 @@ const ZONES = [
 const BENEFITS = [
   { icon: Package, title: "Imballo sicuro", text: "Ogni articolo è imballato con cura: ceramica e vetro arrivano intatti." },
   { icon: Clock, title: "Tracciamento", text: "Ricevi un link per seguire la spedizione fino alla tua porta." },
-  { icon: ShieldCheck, title: "Consegna assicurata", text: "Se qualcosa va perso o rott* durante il trasporto, lo sostituiamo noi." },
+  { icon: ShieldCheck, title: "Consegna assicurata", text: "Se qualcosa va perso o rotta durante il trasporto, lo sostituiamo noi." },
   { icon: Store, title: "Ritiro in negozio", text: "Ordina online e ritira gratis nel negozio DA MORENO più comodo per te." },
 ];
 
