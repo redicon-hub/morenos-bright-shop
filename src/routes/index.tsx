@@ -593,8 +593,8 @@ export function Footer() {
             Dove tutto costa meno. Tutto per la tua casa, ogni giorno.
           </p>
         </div>
-        <FooterCol title="Acquista" links={["Shop online", "Categorie", "Stagionalità", "Bundle", "Novità"]} />
-        <FooterCol title="Servizio clienti" links={["Contatti", "Spedizioni", "Resi", "Pagamenti", "FAQ"]} />
+        <FooterCol title="Acquista" links={[{ label: "Shop online", href: "/shop" }, { label: "Categorie", href: "/shop" }, { label: "Stagionalità", href: "/shop" }, { label: "Bundle", href: "#" }, { label: "Novità", href: "/shop" }]} />
+        <FooterCol title="Servizio clienti" links={[{ label: "Contatti", href: "/contatti" }, { label: "Spedizioni", href: "/spedizioni" }, { label: "Resi", href: "/resi" }, { label: "Pagamenti", href: "/pagamenti" }, { label: "FAQ", href: "/faq" }]} />
         <div>
           <h4 className="font-semibold mb-3">Newsletter</h4>
           <p className="text-sm text-white/70 mb-3">Iscriviti per ricevere idee e offerte.</p>
@@ -617,13 +617,19 @@ export function Footer() {
   );
 }
 
-function FooterCol({ title, links }: { title: string; links: string[] }) {
+function FooterCol({ title, links }: { title: string; links: { label: string; href: string }[] }) {
   return (
     <div>
       <h4 className="font-semibold mb-3">{title}</h4>
       <ul className="space-y-2 text-sm text-white/70">
         {links.map((l) => (
-          <li key={l}><a href="#" className="hover:text-white transition-colors">{l}</a></li>
+          <li key={l.label}>
+            {l.href.startsWith("/") ? (
+              <Link to={l.href} className="hover:text-white transition-colors">{l.label}</Link>
+            ) : (
+              <a href={l.href} className="hover:text-white transition-colors">{l.label}</a>
+            )}
+          </li>
         ))}
       </ul>
     </div>
