@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ChevronRight, ShoppingCart, Heart, Truck, ShieldCheck, RotateCcw, Check, Minus, Plus } from "lucide-react";
 import { Header, Footer, WhatsAppButton, MobileTabBar } from "./index";
 import { ProductCard } from "./shop";
-import { getProductBySlug, getRelated } from "@/lib/products";
+import { getProductBySlug, getRelated, type Product } from "@/lib/products";
 import { useCart, formatCHF } from "@/lib/cart";
 
 export const Route = createFileRoute("/prodotto/$slug")({
@@ -73,7 +73,7 @@ function ProductError({ error, reset }: ErrorComponentProps) {
 }
 
 function ProductPage() {
-  const { product } = Route.useLoaderData();
+  const { product } = Route.useLoaderData() as { product: Product };
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const { addItem } = useCart();
