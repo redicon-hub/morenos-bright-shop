@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound, useRouter } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, useRouter, ErrorComponentProps } from "@tanstack/react-router";
 import { useState } from "react";
 import { ChevronRight, ShoppingCart, Heart, Truck, ShieldCheck, RotateCcw, Check, Minus, Plus } from "lucide-react";
 import { Header, Footer, WhatsAppButton, MobileTabBar } from "./index";
@@ -48,14 +48,15 @@ function NotFoundProduct() {
   );
 }
 
-function ProductError({ error, reset }: { error: Error; reset: () => void }) {
+function ProductError({ error, reset }: ErrorComponentProps) {
   const router = useRouter();
+  const message = error instanceof Error ? error.message : "Si è verificato un errore inatteso.";
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <div className="mx-auto max-w-3xl px-4 py-20 text-center">
         <h1 className="text-2xl font-bold">Errore di caricamento</h1>
-        <p className="text-muted-foreground mt-2 text-sm">{error.message}</p>
+        <p className="text-muted-foreground mt-2 text-sm">{message}</p>
         <button
           onClick={() => { router.invalidate(); reset(); }}
           className="inline-flex mt-6 rounded-[10px] bg-brand-red text-white px-5 py-3 font-semibold hover:bg-brand-red-dark transition-colors"
