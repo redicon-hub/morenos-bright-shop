@@ -9,13 +9,15 @@ import { useCart, formatCHF } from "@/lib/cart";
 export const Route = createFileRoute("/prodotto/$slug")({
   head: ({ params }) => {
     const p = getProductBySlug(params.slug);
-    if (!p) return { meta: [{ title: "Prodotto non trovato — DA MORENO" }] };
+    if (!p) return { meta: [{ title: "Prodotto non trovato — DA MORENO" } as const] };
+    const title = `${p.name} — DA MORENO`;
+    const desc = p.shortDescription;
     return {
       meta: [
-        { title: `${p.name} — DA MORENO` },
-        { name: "description", content: p.shortDescription },
-        { property: "og:title", content: `${p.name} — DA MORENO` },
-        { property: "og:description", content: p.shortDescription },
+        { title },
+        { name: "description", content: desc },
+        { property: "og:title", content: title },
+        { property: "og:description", content: desc },
         { property: "og:image", content: p.image },
         { name: "twitter:image", content: p.image },
       ],
